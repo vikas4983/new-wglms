@@ -1,0 +1,109 @@
+@extends('layouts.main-app')
+@section('title', 'Guests List')
+@section('content')
+    <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :current-route="['name' => 'List', 'url' => null]" class="mb-5" />
+    @include('alerts.alert')
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <a href="{{ route('weddings.create') }}" class="btn btn-info" id="uploadBtn">
+              Add Guest
+            </a>
+            <form id="sendInvitation" style="margin-left: 10px; display:none" action="{{ route('send.invitation') }}"
+                method="post">
+                @csrf
+                <button type="button" id="invitationBtn" disabled class="btn btn-info">
+                    INVITATION
+                </button>
+            </form>
+        </div>
+        <div class="input-group" style="max-width:255px;">
+            <form action="{{ route('filter.keyword') }}" method="get" class="d-flex w-100">
+                <input type="hidden" name="url" value="{{ $url ?? '' }}">
+                <input type="text" class="form-control" name="keyword" placeholder="Name, Mobile, Email..."
+                    autocomplete="off">
+                <button class="input-group-text">
+                    Search
+                </button>
+            </form>
+        </div>
+    </div>
+    <table class="table" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><input type="checkbox" name="allCb" class="allCb" id="allCb"> Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                {{-- <th>Event</th> --}}
+                {{-- <th>Action</th> --}}
+            </tr>
+        </thead>
+        <div class="text-center">
+            <span id="copyData" style="color: rgb(30, 9, 218)"></span>
+        </div>
+        <tbody>
+            @if ($guests->count() > 0)
+                @foreach ($guests as $index => $guest)
+                    <tr class="viewData">
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            <span> <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id"
+                                    id="singleCb">
+                                {{ Str::limit($guest->name ?? 'NA', 7) }}
+
+                            </span>
+                        </td>
+                        <td>
+                            <a href="tel:{{ $guest->phone }}" style="text-decoration: none; color: inherit;">
+                                {{ $guest->phone }}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a href="mailto:{{ $guest->email }}" style="text-decoration: none; color: inherit;">
+                                {{ Str::limit($guest->email ?? '', 7) }}
+                            </a>
+
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <x-edit-action-component :route="route('weddings.edit', $guest->id)" :objectData="$guest" :method="'GET'"
+                                    :title="__('labels.guest_title')" :modalSize="__('labels.guest_edit_modal_size')" />
+                                <span class="mx-1"></span>
+                                <x-delete-action-component :route="route('weddings.destroy', $guest->id)" />
+
+                            </div>
+                        </td>
+
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="5" class="text-center text-danger py-3">
+                        <h3 style="color: rgb(0, 0, 0)">Data not available</h3>
+                    </td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-5">
+        {{ $guests->links() }}
+    </div>
+    <script>
+        @if (session('success'))
+            toastr.success("{{ session('success') }}", "Success");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}", "Error");
+        @endif
+
+        @if (session('warning'))
+            toastr.warning("{{ session('warning') }}", "Warning");
+        @endif
+
+        @if (session('info'))
+            toastr.info("{{ session('info') }}", "Info");
+        @endif
+    </script>
+@endsection
