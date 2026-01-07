@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <a href="{{ route('weddings.create') }}" class="btn btn-info" id="uploadBtn">
-              Add Guest
+                Add Guest
             </a>
             <form id="sendInvitation" style="margin-left: 10px; display:none" action="{{ route('send.invitation') }}"
                 method="post">
