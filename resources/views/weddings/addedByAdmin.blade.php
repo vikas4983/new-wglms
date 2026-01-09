@@ -1,17 +1,66 @@
 @extends('layouts.main-app')
 @section('title', 'Guests List')
 @section('content')
+    <style>
+        .btn-inline {
+            display: inline-flex !important;
+            align-items: center;
+            width: auto !important;
+            padding: 4px 8px;
+            /* 👈 reduce padding */
+            white-space: nowrap;
+        }
+
+        .guest-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .count-circle {
+            background-color: #28A745;
+            /* green */
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1;
+        }
+    </style>
     <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :current-route="['name' => 'List', 'url' => null]" class="mb-5" />
     @include('alerts.alert')
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-            <a href="{{ route('weddings.create') }}" class="btn btn-info" id="uploadBtn">
-                Add Guest
+            <a href="{{ route('weddings.create') }}" class="btn btn-info  btn-inline mr-2" id="uploadBtn">
+                <span class="nav-text"><span class="guest-inline" title="Add Guest">
+                        Add
+                        <span class="count-circle"> {{ $count['totalByAdmin'] ?? '0' }}</span>
+                    </span>
             </a>
+
+            <a href="{{ route('admin.invited') }}" class="btn btn-info  btn-inline mr-2">
+                <span class="nav-text"><span class="guest-inline" title="Guest Invited via Admin">
+                        Invited
+                        <span class="count-circle"> {{ $count['invitedByAdmin'] ?? '0' }}</span>
+                    </span>
+            </a>
+            <a href="#" class="btn btn-info  btn-inline mr-2">
+                <span class="nav-text"><i class="mdi mdi-account-group"></i>
+                    <span class="count-circle"> {{ $count['total_members'] ?? '0' }}</span>
+                    </i>
+                </span>
+            </a>
+
             <form id="sendInvitation" style="margin-left: 10px; display:none" action="{{ route('send.invitation') }}"
                 method="post">
                 @csrf
-                <button type="button" id="invitationBtn" disabled class="btn btn-info">
+                <button type="button" id="invitationBtn" disabled class="btn btn-info btn-sm">
                     INVITATION
                 </button>
             </form>
@@ -37,7 +86,6 @@
                         <span>NAME</span>
                     </div>
                 </th>
-                
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Action</th>
@@ -57,7 +105,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id[]">
                                 &nbsp;
-                                <span>{{ Str::limit($guest->name ?? 'NA', 8) }}</span>
+                                <span>{{ Str::limit($guest->name ?? 'NA', 7) }}</span>
                             </div>
                         </td>
                         <td>

@@ -10,6 +10,7 @@ use App\Jobs\SendWebUrlJob;
 use App\Jobs\StoreFormData;
 use App\Models\Guest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class WeddingController extends Controller
@@ -21,7 +22,7 @@ class WeddingController extends Controller
     {
         $guests = Wedding::where('is_sent', 0)->latest()->paginate(10);
 
-       return view('weddings.index', compact('guests'));
+        return view('weddings.index', compact('guests'));
        
     }
 
@@ -40,6 +41,8 @@ class WeddingController extends Controller
                 ->route('weddings.create')
                 ->with('success', 'Email & phone has been already exists.');
         }
+        $validatedData['user_id'] = Auth::id();
+      
         Wedding::create($validatedData);
         return redirect()
             ->route('weddings.create')
@@ -95,6 +98,20 @@ class WeddingController extends Controller
         $guests = Wedding::where('is_sent', 1)->latest()->paginate(10);
         return view('weddings.invited', compact('guests'));
     }
+    public function guestByAdmin()
+    {   
+      
+        $guests = Wedding::where('user_id', auth()->id())->where('is_sent', 0)->latest()->paginate();
+      
+        return view('weddings.addedByAdmin', compact('guests'));
+    }
+    public function guestInvitedByAdmin()
+    {   
+        $guests = Wedding::where('user_id', Auth::id())->where('is_sent', 1)->latest()->paginate(10);
+        return view('weddings.addedByAdmin', compact('guests'));
+    }
+
+
 
     public function view()
     {

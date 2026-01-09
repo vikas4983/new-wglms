@@ -28,6 +28,10 @@ Route::middleware([
     Route::resource('weddings', WeddingController::class);
     Route::get('invited-guests', [WeddingController::class, 'invited'])
         ->name('invited.guests');
+    Route::get('guest-added-by-admin', [WeddingController::class, 'guestByAdmin'])
+        ->name('admin.guest');
+    Route::get('guest-invited-by-admin', [WeddingController::class, 'guestInvitedByAdmin'])
+        ->name('admin.invited');
     Route::post('invitation', [WeddingController::class, 'invitation'])->name('send.invitation');
 });
 Route::get('wedding-invitation', [WeddingController::class, 'guestCreate'])

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\CountService;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,11 +25,12 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole() || $this->app->environment('testing')) {
             return;
         }
-
         Paginator::useBootstrapFive();
-        $modelCount = app(CountService::class)->getCount();
-        View::share('count', $modelCount ?? '');
-        
-       
+        View::composer('*', function ($view) {
+            if (Auth::check()) {
+                $count = app(CountService::class)->getCount();
+                $view->with('count', $count);
+            }
+        });
     }
 }

@@ -12,7 +12,7 @@
             text-decoration: none !important;
         }
     </style>
-    <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :parent-route="['name' => 'Guests', 'url' => route('weddings.index')]" :current-route="['name' => 'Create', 'url' => null]" />
+    <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :parent-route="['name' => 'Guests', 'url' => route('admin.guest')]" :current-route="['name' => 'Create', 'url' => null]" />
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow">
@@ -27,8 +27,8 @@
                             <div class="form-group col-lg-6">
                                 <label for="name" class="font-weight-medium">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" placeholder="Enter your name"
-                                    value="{{ old('name') }}" inputmode="\d{30}" maxlength="30">
+                                    id="name" name="name" placeholder="Enter your name" value="{{ old('name') }}"
+                                    inputmode="\d{30}" maxlength="30">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -38,15 +38,14 @@
                             <div class="form-group col-lg-6">
                                 <label for="email" class="font-weight-medium">Email</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" placeholder="Enter your email"
-                                    value="{{ old('email') }}" inputmode="\d{50}" maxlength="50" required>
+                                    id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}"
+                                    inputmode="\d{50}" maxlength="50" required>
                                 @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="form-group col-lg-6">
                                 <label for="guest_phone" class="font-weight-medium">Phone</label>
                                 <input type="tel" name="phone" placeholder="Enter your mobile number" maxlength="10"
@@ -65,14 +64,24 @@ is-invalid
                                     </div>
                                 @enderror
                             </div>
-
+                            <div class="form-group col-lg-6">
+                                <label for="description" class="font-weight-medium">Description</label>
+                                <input type="text" class="form-control @error('description') is-invalid @enderror"
+                                    id="description" name="description" placeholder="Enter your description" value="{{ old('description') }}"
+                                    inputmode="\d{30}" maxlength="30">
+                                @error('description')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
 
                         </div>
                         <div class="row mt-5">
                             <div class="col text-center">
                                 <button type="submit" id="submitBtn" title="{{ __('titles.add_guest') }}"
-                                    class="btn btn-primary">{{ __('buttons.create') }}</button>
+                                    class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </form>

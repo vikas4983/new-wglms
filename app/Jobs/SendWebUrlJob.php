@@ -37,7 +37,7 @@ class SendWebUrlJob implements ShouldQueue
                 return;
             }
 
-            Mail::to($this->data->email)->send(new SendWebUrlMail($this->data));
+            Mail::to($this->data->email)->queue(new SendWebUrlMail($this->data));
 
             $this->updateStatus($this->data);
         } catch (\Throwable $th) {

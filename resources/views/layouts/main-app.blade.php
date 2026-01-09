@@ -55,6 +55,44 @@
             text-decoration: none !important;
         }
     </style>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+        }
+
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex: 1;
+        }
+
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            flex: 1 0 auto;
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                min-height: calc(100vh - 56px);
+                /* header height */
+            }
+        }
+    </style>
 </head>
 
 <body class="navbar-fixed sidebar-fixed" id="body">
@@ -96,27 +134,46 @@
                             Weeding
                         </li>
                         <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{route('weddings.index')}}" 
-                               >
+                            <a class="sidenav-item-link" href="{{ route('weddings.index') }}">
                                 <i class="mdi mdi-account-group-outline"></i>
                                 <span class="nav-text">Guest <h5 class="badge badge-primary badge-pill">
                                         {{ $count['guests'] ?? '0' }}
                                     </h5>
                                 </span> <b class="caret"></b>
                             </a>
-                          
+
                         </li>
-                      
                         <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{route('invited.guests')}}" 
-                                 aria-expanded="false" aria-controls="product">
+                            <a class="sidenav-item-link" href="{{ route('admin.guest') }}">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span class="nav-text">Admin <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['byAdmin'] ?? '0' }}
+                                    </h5>
+                                </span> <b class="caret"></b>
+                            </a>
+
+                        </li>
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('admin.invited') }}" aria-expanded="false"
+                                aria-controls="product">
+                                <i class="mdi mdi-email-check"></i>
+                                <span class="nav-text">Invited By Admin <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['invitedByAdmin'] ?? '0' }}
+
+                                    </h5></span> <b class="caret"></b>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('invited.guests') }}" aria-expanded="false"
+                                aria-controls="product">
                                 <i class="mdi mdi-email-check"></i>
                                 <span class="nav-text">Invited <h5 class="badge badge-primary badge-pill">
                                         {{ $count['invited'] ?? '0' }}
 
                                     </h5></span> <b class="caret"></b>
                             </a>
-                       </li>
+                        </li>
+
                     </ul>
 
                 </div>
@@ -139,7 +196,8 @@
                         $segment = request()->segment(1);
                         $title = Str::singular($segment);
                     @endphp
-                    <span class="page-title">{{ $title ?? '' }}</span>
+
+                    <span class="page-title">{{ $title === 'wedding' ? 'Guest Added via Web Page' : $title }}</span>
 
                     <div class="navbar-right ">
                         <ul class="nav navbar-nav">
