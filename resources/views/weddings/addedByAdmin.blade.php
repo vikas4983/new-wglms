@@ -105,7 +105,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id[]">
                                 &nbsp;
-                                <span>{{ Str::limit($guest->name ?? 'NA', 7) }}</span>
+                                <span>{{ $guest->name }}</span>
                             </div>
                         </td>
                         <td>
@@ -116,7 +116,7 @@
                         </td>
                         <td>
                             <a href="mailto:{{ $guest->email }}" style="text-decoration: none; color: inherit;">
-                                {{ Str::limit($guest->email ?? '', 7) }}
+                                {{$guest->email}}
                             </a>
 
                         </td>

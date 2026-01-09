@@ -27,7 +27,7 @@
             </form>
         </div>
     </div>
-    <table class="table" style="width:100%">
+    <table id="guestsTable" class="table table-hover table-product" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -37,12 +37,11 @@
                         <span>NAME</span>
                     </div>
                 </th>
-                
+
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Action</th>
-                {{-- <th>Event</th> --}}
-                {{-- <th>Action</th> --}}
+
             </tr>
         </thead>
         <div class="text-center">
@@ -57,7 +56,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id[]">
                                 &nbsp;
-                                <span>{{ Str::limit($guest->name ?? 'NA', 8) }}</span>
+                                <span>{{ $guest->name  }}</span>
                             </div>
                         </td>
                         <td>
@@ -68,7 +67,7 @@
                         </td>
                         <td>
                             <a href="mailto:{{ $guest->email }}" style="text-decoration: none; color: inherit;">
-                                {{ Str::limit($guest->email ?? '', 7) }}
+                                {{ $guest->email }}
                             </a>
 
                         </td>

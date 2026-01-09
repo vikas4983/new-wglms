@@ -16,33 +16,25 @@ class InvitationCreate extends FormRequest
     {
         $userId = $this->route('wedding');
         return [
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('weddings', 'email')->ignore($userId),
-            ],
-            'phone' => [
-                'required',
-                'digits:10',
-                Rule::unique('weddings', 'phone')->ignore($userId),
-            ],
-            'name' => 'required|string|min:3|max:30',
+            'email' => ['required', 'email', Rule::unique('weddings', 'email')->ignore($userId)],
+            'phone' => ['required', 'digits:10', Rule::unique('weddings', 'phone')->ignore($userId)],
+            'name' => ['nullable', 'string', 'min:3', 'max:30'],
+            'description' => ['nullable', 'string', 'max:10'],
         ];
     }
     public function messages(): array
     {
         return [
             'email.required' => 'Email address is required.',
-            'email.email'    => 'Please enter a valid email address.',
-            'email.unique'   => 'This email has already been used to submit the form.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'This email has already been used to submit the form.',
 
             'phone.required' => 'Mobile number is required.',
-            'phone.digits'   => 'Mobile number must be exactly 10 digits.',
-            'phone.unique'   => 'This mobile number has already been used to submit the form.',
+            'phone.digits' => 'Mobile number must be exactly 10 digits.',
+            'phone.unique' => 'This mobile number has already been used to submit the form.',
 
-            'name.required'  => 'Name is required.',
-            'name.min'       => 'Name must be at least 3 characters.',
-            'name.max'       => 'Name may not be greater than 30 characters.',
+            'name.min' => 'Name must be at least 3 characters.',
+            'name.max' => 'Name may not be greater than 30 characters.',
         ];
     }
 }

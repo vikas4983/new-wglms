@@ -27,15 +27,19 @@
             </form>
         </div>
     </div>
-    <table class="table"  style="width:100%">
+    <table id="productsTable" class="table table-hover table-product" style="width:100%" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
-                <th><input type="checkbox" name="allCb" class="allCb" id="allCb"> Name</th>
+                <th>
+                    <div class="d-flex align-items-center gap-2">
+                        <span>NAME</span>
+                    </div>
+                </th>
                 <th>Phone</th>
                 <th>Email</th>
-                {{-- <th>Event</th> --}}
-                {{-- <th>Action</th> --}}
+                <th>Action</th>
+
             </tr>
         </thead>
         <div class="text-center">
@@ -47,32 +51,34 @@
                     <tr class="viewData">
                         <td>{{ $index + 1 }}</td>
                         <td>
-                            <span> <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id"
-                                    id="singleCb">
-                                {{ Str::limit($guest->name ?? 'NA', 7) }}
-                              
-                            </span>
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id[]">
+                                &nbsp;
+                                <span>{{ $guest->name ?? '' }}</span>
+                            </div>
                         </td>
                         <td>
                             <a href="tel:{{ $guest->phone }}" style="text-decoration: none; color: inherit;">
                                 {{ $guest->phone }}
                             </a>
-                           
+
                         </td>
                         <td>
                             <a href="mailto:{{ $guest->email }}" style="text-decoration: none; color: inherit;">
-                                {{ Str::limit($guest->email ?? '', 7) }}
+                                {{ Str::limit($guest->email ?? '', 67) }}
                             </a>
-                           
+
                         </td>
-                        <td><div class="d-flex gap-2">
+                        <td>
+                            <div class="d-flex gap-2">
                                 <x-edit-action-component :route="route('weddings.edit', $guest->id)" :objectData="$guest" :method="'GET'"
                                     :title="__('labels.guest_title')" :modalSize="__('labels.guest_edit_modal_size')" />
                                 <span class="mx-1"></span>
                                 <x-delete-action-component :route="route('weddings.destroy', $guest->id)" />
 
-                            </div></td>
-                       
+                            </div>
+                        </td>
+
                     </tr>
                 @endforeach
             @else
@@ -103,5 +109,10 @@
         @if (session('info'))
             toastr.info("{{ session('info') }}", "Info");
         @endif
+    </script>
+    <script>
+        window.addEventListener("load", function() {
+            document.body.classList.remove("loading");
+        });
     </script>
 @endsection
