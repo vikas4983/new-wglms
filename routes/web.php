@@ -7,10 +7,10 @@ use App\Http\Controllers\WeddingController;
 use Illuminate\Support\Facades\Route;
 
 Route::fallback(function () {
-    return view('welcome');
+    return view('login');
 });
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 Route::get('register', function () {
     return view('auth.login');
