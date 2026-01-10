@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wedding extends Model
 {
-    protected $fillable = ['name', 'email', 'phone','is_sent','user_id','description'];
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'is_sent',
+        'user_id',
+        'description',
+        'address',
+        'comments'
+    ];
 
     protected function name(): Attribute
     {

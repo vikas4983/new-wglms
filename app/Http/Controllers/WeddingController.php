@@ -20,10 +20,9 @@ class WeddingController extends Controller
      */
     public function index()
     {
-        $guests = Wedding::where('is_sent', 0)->latest()->paginate(10);
 
+        $guests = Wedding::where('is_sent', 0)->whereNull('user_id')->latest()->paginate(10);
         return view('weddings.index', compact('guests'));
-       
     }
 
     /**
@@ -35,14 +34,16 @@ class WeddingController extends Controller
     }
     public function store(AddGuestRequest $request)
     {
+
         $validatedData = $request->validated();
+
         if (Wedding::where('email', $validatedData['email'])->where('phone', $validatedData['phone'])->exists()) {
             return redirect()
                 ->route('weddings.create')
                 ->with('success', 'Email & phone has been already exists.');
         }
         $validatedData['user_id'] = Auth::id();
-      
+
         Wedding::create($validatedData);
         return redirect()
             ->route('weddings.create')
@@ -99,14 +100,14 @@ class WeddingController extends Controller
         return view('weddings.invited', compact('guests'));
     }
     public function guestByAdmin()
-    {   
-      
+    {
+
         $guests = Wedding::where('user_id', auth()->id())->where('is_sent', 0)->latest()->paginate();
-      
+
         return view('weddings.addedByAdmin', compact('guests'));
     }
     public function guestInvitedByAdmin()
-    {   
+    {
         $guests = Wedding::where('user_id', Auth::id())->where('is_sent', 1)->latest()->paginate(10);
         return view('weddings.addedByAdmin', compact('guests'));
     }
@@ -158,33 +159,13 @@ class WeddingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(InvitationCreate $request, Wedding $wedding)
+    public function update(AddGuestRequest $request, Wedding $wedding)
     {
         $validatedData = $request->validated();
-
-        try {
-            if ($wedding) {
-                $wedding->update($validatedData);
-            }
-            if ($request->ajax() || $request->wantsJson()) {
-                return response()->json([
-                    'action' => 'update',
-                    'message' => 'Guest updated successfully',
-                ]);
-            }
-            return redirect()->route('weddings.index')->with('success', 'Guest updated successfully');
-        } catch (\Throwable $th) {
-            Log::info('Updation failed' . $th->getMessage());
-            if ($request->ajax() || $request->wantsJson()) {
-                Log::info('Updation failed' . $th->getMessage());
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Something went wrong',
-                ]);
-            }
-            return redirect()->back()->with('error', 'Something went wrong');
-        }
+        $wedding->update($validatedData);
+        return redirect()->route('admin.guest')->with('success', 'Guest updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

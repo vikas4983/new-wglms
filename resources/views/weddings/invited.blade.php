@@ -16,7 +16,7 @@
                 </button>
             </form>
         </div>
-        <div class="input-group" style="max-width:255px;">
+        {{-- <div class="input-group" style="max-width:255px;">
             <form action="{{ route('filter.keyword') }}" method="get" class="d-flex w-100">
                 <input type="hidden" name="url" value="{{ $url ?? '' }}">
                 <input type="text" class="form-control" name="keyword" placeholder="Name, Mobile, Email..."
@@ -25,7 +25,7 @@
                     Search
                 </button>
             </form>
-        </div>
+        </div> --}}
     </div>
     <table id="productsTable" class="table table-hover table-product" style="width:100%" style="width:100%">
         <thead>

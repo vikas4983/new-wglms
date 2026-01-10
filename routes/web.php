@@ -40,5 +40,5 @@ Route::get('wedding-invitation', [WeddingController::class, 'guestCreate'])
     ->name('invitation.form');
 Route::post('submit-invitation', [WeddingController::class, 'guestStore'])
     ->name('invitation.submit');
-Route::get('ashish-priya-wedding', [WeddingController::class, 'view'])
+Route::get('invitation', [WeddingController::class, 'view'])
     ->name('view.webpage');

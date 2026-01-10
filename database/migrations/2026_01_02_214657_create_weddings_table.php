@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('weddings', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('phone', 10)->unique();;
             $table->tinyInteger('is_sent')->default(0);
+            $table->tinyInteger('user_id')->nullable();
+            $table->string('description')->nullable();
+            $table->string('address')->nullable();
+            $table->string('comments')->nullable();
             $table->timestamps();
         });
     }

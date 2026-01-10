@@ -40,7 +40,7 @@ is-invalid
             @enderror
         </div>
         <div class="form-group col-lg-6">
-            <label for="description" class="font-weight-medium">Description</label>
+            <label for="description" class="font-weight-medium">Family members</label>
             <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                 name="description" placeholder="Enter your description" value="{{ $objectdata->description }}"
                 inputmode="\d{30}" maxlength="30">
@@ -50,6 +50,29 @@ is-invalid
                 </div>
             @enderror
         </div>
+        <div class="form-group col-lg-6">
+            <label for="address" class="font-weight-medium">Address</label>
+            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                name="address" placeholder="Enter your address" value="{{ $objectdata->address }}"
+                inputmode="\d{30}" maxlength="30">
+            @error('address')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="comments" class="font-weight-medium">Comment</label>
+            <input type="text" class="form-control @error('comments') is-invalid @enderror" id="comments"
+                name="comments" placeholder="Enter your comments" value="{{ $objectdata->comments }}"
+                inputmode="\d{30}" maxlength="30">
+            @error('comments')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        
 
     </div>
     <div class="row mt-5">

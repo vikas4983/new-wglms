@@ -28,7 +28,9 @@ class AddGuestRequest extends FormRequest
             'name' =>  ['string', 'max:30'],
             'email' => ['required', 'email', 'max:50', Rule::unique('weddings')->ignore($guestId)],
             'phone' => ['required', 'digits:10', Rule::unique('weddings')->ignore($guestId)],
-          
+           'description' => ['nullable', 'integer', 'max:30'],
+            'address' => ['nullable','string'],
+            'comments' => ['nullable','string'],
         ];
     }
 }

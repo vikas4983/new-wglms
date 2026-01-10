@@ -27,7 +27,9 @@ class InvitationCardRequest extends FormRequest
             'name' => ['nullable', 'string', 'max:30'],
             'email' => ['nullable', 'email', 'string', 'max:30', Rule::unique('invitation_cards', 'email')->ignore($invitationCardId)],
             'phone' => ['nullable', 'digits:10', 'max:30', Rule::unique('invitation_cards', 'phone')->ignore($invitationCardId)],
-            'description' => ['nullable', 'string', 'max:30'],
+            'description' => ['nullable', 'integer', 'max:30'],
+            'address' => ['nullable'],
+            'comments' => ['nullable'],
         ];
     }
 }

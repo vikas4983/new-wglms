@@ -19,7 +19,7 @@ class InvitationCreate extends FormRequest
             'email' => ['required', 'email', Rule::unique('weddings', 'email')->ignore($userId)],
             'phone' => ['required', 'digits:10', Rule::unique('weddings', 'phone')->ignore($userId)],
             'name' => ['nullable', 'string', 'min:3', 'max:30'],
-            'description' => ['nullable', 'string', 'max:10'],
+           
         ];
     }
     public function messages(): array

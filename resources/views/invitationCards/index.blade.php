@@ -38,25 +38,25 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <a href="{{ route('invitationCards.create') }}" class="btn btn-info mr-2" id="uploadBtn">
-                <span class="nav-text"><span class="guest-inline" title="Add Guest">
-                        Add
-                        <span class="count-circle"> {{ $count['invitationCards'] ?? '0' }}</span>
+                <span class="guest-inline" title="Add Guest">
+                    Add
+                    <span class="count-circle"> {{ $count['invitationCards'] ?? '0' }}</span>
+                </span>
+                <a href="#" class="btn btn-info  btn-inline mr-2">
+                    <span class="nav-text"><i class="mdi mdi-account-group"></i>
+                        <span class="count-circle"> {{ $count['invitationCard_member'] ?? '0' }}</span>
+                        </i>
                     </span>
-                    <a href="#" class="btn btn-info  btn-inline mr-2">
-                        <span class="nav-text"><i class="mdi mdi-account-group"></i>
-                            <span class="count-circle"> {{ $count['invitationCard_member'] ?? '0' }}</span>
-                            </i>
-                        </span>
-                    </a>
-                    <form id="sendInvitation" style="margin-left: 10px; display:none"
-                        action="{{ route('send.invitation') }}" method="post">
-                        @csrf
-                        <button type="button" id="invitationBtn" disabled class="btn btn-info">
-                            INVITATION
-                        </button>
-                    </form>
+                </a>
+                <form id="sendInvitation" style="margin-left: 10px; display:none" action="{{ route('send.invitation') }}"
+                    method="post">
+                    @csrf
+                    <button type="button" id="invitationBtn" disabled class="btn btn-info">
+                        INVITATION
+                    </button>
+                </form>
         </div>
-        <div class="input-group" style="max-width:255px;">
+        {{-- <div class="input-group" style="max-width:255px;">
             <form action="{{ route('filter.keyword') }}" method="get" class="d-flex w-100">
                 <input type="hidden" name="url" value="{{ $url ?? '' }}">
                 <input type="text" class="form-control" name="keyword" placeholder="Name, Mobile, Email..."
@@ -65,7 +65,7 @@
                     Search
                 </button>
             </form>
-        </div>
+        </div> --}}
     </div>
     <table id="productsTable" class="table table-hover table-product" style="width:100%">
         <thead>
@@ -80,6 +80,8 @@
 
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Address</th>
+                <th>Comment</th>
                 <th>Action</th>
 
             </tr>
@@ -96,6 +98,9 @@
                             <div class="d-flex align-items-center gap-2">
                                 <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id[]">
                                 &nbsp;
+                                <span class="guest-inline" >
+                                    <span class="count-circle"> {{$guest->description  ?? '0' }}</span>
+                                </span>
                                 <span>{{ $guest->name }}</span>
                             </div>
                         </td>
@@ -111,6 +116,9 @@
                             </a>
 
                         </td>
+                       
+                        <td>{{ $guest->address }}</td>
+                        <td>{{ $guest->comments }}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <x-edit-action-component :route="route('invitationCards.edit', $guest->id)" :objectData="$guest" :method="'GET'"
@@ -125,7 +133,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td colspan="5" class="text-center text-danger py-3">
+                    <td colspan="8" class="text-center text-danger py-3">
                         <h3 style="color: rgb(0, 0, 0)">Data not available</h3>
                     </td>
                 </tr>

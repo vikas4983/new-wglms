@@ -1,6 +1,38 @@
 @extends('layouts.main-app')
 @section('title', 'Guests List')
 @section('content')
+<style>
+        .btn-inline {
+            display: inline-flex !important;
+            align-items: center;
+            width: auto !important;
+            padding: 4px 8px;
+            /* 👈 reduce padding */
+            white-space: nowrap;
+        }
+
+        .guest-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .count-circle {
+            background-color: #28A745;
+            /* green */
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1;
+        }
+    </style>
     <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :current-route="['name' => 'List', 'url' => null]" class="mb-5" />
     @include('alerts.alert')
     <div class="d-flex justify-content-between align-items-center">
@@ -16,7 +48,7 @@
                 </button>
             </form>
         </div>
-        <div class="input-group" style="max-width:255px;">
+        {{-- <div class="input-group" style="max-width:255px;">
             <form action="{{ route('filter.keyword') }}" method="get" class="d-flex w-100">
                 <input type="hidden" name="url" value="{{ $url ?? '' }}">
                 <input type="text" class="form-control" name="keyword" placeholder="Name, Mobile, Email..."
@@ -25,9 +57,9 @@
                     Search
                 </button>
             </form>
-        </div>
+        </div> --}}
     </div>
-      <table id="productsTable" class="table table-hover table-product" style="width:100%">
+     <table id="productsTable" class="table table-hover table-product" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -56,6 +88,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <input type="checkbox" class="allCb  singleCb" value="{{ $guest->id }}" name="id[]">
                                 &nbsp;
+                                
                                 <span>{{ $guest->name  }}</span>
                             </div>
                         </td>
@@ -85,7 +118,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td colspan="5" class="text-center text-danger py-3">
+                    <td colspan="8" class="text-center text-danger py-3">
                         <h3 style="color: rgb(0, 0, 0)">Data not available</h3>
                     </td>
                 </tr>
