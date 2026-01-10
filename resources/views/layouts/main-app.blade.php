@@ -165,6 +165,16 @@
                             </a>
                         </li>
                         <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('invitationCards.index') }}" aria-expanded="false"
+                                aria-controls="product">
+                                <i class="mdi mdi-email-check"></i>
+                                <span class="nav-text">invitation Cards <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['invitationCards'] ?? '0' }}
+
+                                    </h5></span> <b class="caret"></b>
+                            </a>
+                        </li>
+                        <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('invited.guests') }}" aria-expanded="false"
                                 aria-controls="product">
                                 <i class="mdi mdi-email-check"></i>

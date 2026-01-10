@@ -1,38 +1,60 @@
 @extends('layouts.main-app')
-@section('title', 'Guests List')
+@section('title', 'Invitation List')
 @section('content')
+    <style>
+        .btn-inline {
+            display: inline-flex !important;
+            align-items: center;
+            width: auto !important;
+            padding: 4px 8px;
+            /* 👈 reduce padding */
+            white-space: nowrap;
+        }
 
+        .guest-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .count-circle {
+            background-color: #28A745;
+            /* green */
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1;
+        }
+    </style>
     <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :current-route="['name' => 'List', 'url' => null]" class="mb-5" />
     @include('alerts.alert')
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-            <a href="{{ route('weddings.create') }}" class="btn btn-info  btn-inline mr-2" id="uploadBtn">
+            <a href="{{ route('invitationCards.create') }}" class="btn btn-info mr-2" id="uploadBtn">
                 <span class="nav-text"><span class="guest-inline" title="Add Guest">
                         Add
-                        <span class="count-circle"> {{ $count['totalByAdmin'] ?? '0' }}</span>
+                        <span class="count-circle"> {{ $count['invitationCards'] ?? '0' }}</span>
                     </span>
-            </a>
-
-            <a href="{{ route('admin.invited') }}" class="btn btn-info  btn-inline mr-2">
-                <span class="nav-text"><span class="guest-inline" title="Guest Invited via Admin">
-                        Invited
-                        <span class="count-circle"> {{ $count['invitedByAdmin'] ?? '0' }}</span>
-                    </span>
-            </a>
-            <a href="#" class="btn btn-info  btn-inline mr-2">
-                <span class="nav-text"><i class="mdi mdi-account-group"></i>
-                    <span class="count-circle"> {{ $count['total_members'] ?? '0' }}</span>
-                    </i>
-                </span>
-            </a>
-
-            <form id="sendInvitation" style="margin-left: 10px; display:none" action="{{ route('send.invitation') }}"
-                method="post">
-                @csrf
-                <button type="button" id="invitationBtn" disabled class="btn btn-info btn-sm">
-                    INVITATION
-                </button>
-            </form>
+                    <a href="#" class="btn btn-info  btn-inline mr-2">
+                        <span class="nav-text"><i class="mdi mdi-account-group"></i>
+                            <span class="count-circle"> {{ $count['invitationCard_member'] ?? '0' }}</span>
+                            </i>
+                        </span>
+                    </a>
+                    <form id="sendInvitation" style="margin-left: 10px; display:none"
+                        action="{{ route('send.invitation') }}" method="post">
+                        @csrf
+                        <button type="button" id="invitationBtn" disabled class="btn btn-info">
+                            INVITATION
+                        </button>
+                    </form>
         </div>
         <div class="input-group" style="max-width:255px;">
             <form action="{{ route('filter.keyword') }}" method="get" class="d-flex w-100">
@@ -45,7 +67,7 @@
             </form>
         </div>
     </div>
-     <table id="productsTable" class="table table-hover table-product" style="width:100%">
+    <table id="productsTable" class="table table-hover table-product" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -55,11 +77,11 @@
                         <span>NAME</span>
                     </div>
                 </th>
+
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Action</th>
-                {{-- <th>Event</th> --}}
-                {{-- <th>Action</th> --}}
+
             </tr>
         </thead>
         <div class="text-center">
@@ -85,16 +107,16 @@
                         </td>
                         <td>
                             <a href="mailto:{{ $guest->email }}" style="text-decoration: none; color: inherit;">
-                                {{$guest->email}}
+                                {{ $guest->email }}
                             </a>
 
                         </td>
                         <td>
                             <div class="d-flex gap-2">
-                                <x-edit-action-component :route="route('weddings.edit', $guest->id)" :objectData="$guest" :method="'GET'"
+                                <x-edit-action-component :route="route('invitationCards.edit', $guest->id)" :objectData="$guest" :method="'GET'"
                                     :title="__('labels.guest_title')" :modalSize="__('labels.guest_edit_modal_size')" />
                                 <span class="mx-1"></span>
-                                <x-delete-action-component :route="route('weddings.destroy', $guest->id)" />
+                                <x-delete-action-component :route="route('invitationCards.destroy', $guest->id)" />
 
                             </div>
                         </td>

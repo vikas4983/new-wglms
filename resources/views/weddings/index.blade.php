@@ -27,7 +27,7 @@
             </form>
         </div>
     </div>
-    <table id="guestsTable" class="table table-hover table-product" style="width:100%">
+      <table id="productsTable" class="table table-hover table-product" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\InvitationCardController;
 use App\Http\Controllers\WeddingController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::middleware([
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('filter-keyword', [FilterController::class, 'filter'])->name('filter.keyword');
     Route::resource('weddings', WeddingController::class);
+    Route::resource('invitationCards', InvitationCardController::class);
     Route::get('invited-guests', [WeddingController::class, 'invited'])
         ->name('invited.guests');
     Route::get('guest-added-by-admin', [WeddingController::class, 'guestByAdmin'])

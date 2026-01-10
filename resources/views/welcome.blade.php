@@ -31,7 +31,7 @@
             background: white;
             width: 100%;
             max-width: 380px;
-            padding: 28px 22px;
+            padding: 22px 22px;
             text-align: center;
             border-radius: 16px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
@@ -153,8 +153,7 @@
         <div class="invitation-card">
             <div class="mandap">~ Wedding Ceremony ~</div>
 
-            <h1>You're Invited</h1>
-            <h2>Ashish & Priya</h2>
+            <h2>Ashish weds Kalyani</h2>
 
             <p class="message">
                 With the blessings of our families,
