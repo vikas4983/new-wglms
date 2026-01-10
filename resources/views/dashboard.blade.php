@@ -34,6 +34,21 @@
                 </div>
             </a>
         </div>
+        <div class="col-xl-3 col-md-6">
+            <a href="{{ route('invited.guests') }}">
+                <div class="card card-default bg-success">
+                    <div class="d-flex p-5">
+                        <div class="icon-md bg-white rounded-circle mr-3">
+                            <i class="mdi mdi-label text-success"></i>
+                        </div>
+                        <div class="text-left">
+                            <span class="h2 d-block text-white">{{ $count['invitationCards'] ?? '' }}</span>
+                            <p class="text-white">Physically Invited Guests</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
         <!-- Third box -->
         
         <!-- Fourth box -->
