@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
-
+    <link href="{{ asset('assets/theme/images/favicon-new.png') }}" rel="favicon icon" />
     <style>
         * {
             box-sizing: border-box;
@@ -159,8 +159,8 @@
                 With the blessings of our families,
                 we invite you to celebrate our wedding.
             </p>
-            
-           @if ($errors->any())
+
+            @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="success-message premium">
                         {{ $error }}
