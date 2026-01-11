@@ -159,17 +159,17 @@
                 With the blessings of our families,
                 we invite you to celebrate our wedding.
             </p>
-
-            @if ($errors->any())
+            
+           @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="success-message premium">
                         {{ $error }}
                     </div>
                 @endforeach
             @endif
-            @if (session('error'))
+            @if (session('success'))
                 <div class="success-message premium">
-                    {{ session('error') }}
+                    {{ session('success') }}
                 </div>
             @endif
 
