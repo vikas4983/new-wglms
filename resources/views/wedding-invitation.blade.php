@@ -167,43 +167,43 @@
                         <div class="slider-slick app-pages">
                             <div class="slider-entry">
 
-                                <img src="{{ asset('assets/frontend-theme/images/slider1.jpg') }}" alt="">
+                                <img src="{{ asset('assets/frontend-theme/images/slider1.png') }}" alt="">
                                 <div class="overlay"></div>
                                 <div class="caption">
-                                    <div class="container">
+                                    {{-- <div class="container">
                                         <h2>Wedding Templates</h2>
                                         <p>Lorem ipsum dolor sit amet</p>
                                         <a class="app-button" href="">Read More</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="slider-entry">
                                 <div class="overlay"></div>
-                                <img src="{{ asset('assets/frontend-theme/images/slider2.jpg') }}" alt="">
+                                <img src="{{ asset('assets/frontend-theme/images/slider1.png') }}" alt="">
                                 <div class="caption">
-                                    <div class="container">
+                                    {{-- <div class="container">
                                         <h2>Modern Templates</h2>
                                         <p>Lorem ipsum dolor sit amet</p>
                                         <a class="app-button" href="">Read More</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="slider-entry">
                                 <div class="overlay"></div>
-                                <img src="{{ asset('assets/frontend-theme/images/slider3.jpg') }}" alt="">
+                                <img src="{{ asset('assets/frontend-theme/images/slider1.png') }}" alt="">
                                 <div class="caption">
-                                    <div class="container">
+                                    {{-- <div class="container">
                                         <h2>Perfect Template</h2>
                                         <p>Lorem ipsum dolor sit amet</p>
                                         <a class="app-button" href="">Read More</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                         <!-- end slider -->
 
                         <!-- profile -->
-                        <div class="profile">
+                        {{-- <div class="profile">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-50">
@@ -234,20 +234,22 @@
                                     </div>
                                 </div>
                                 <div class="date">
-                                    <h5>Sunday, 11 December 2017</h5>
+                                    <h5>Thursday, 05 February 2026</h5>
                                     <p>Date Our Wedding</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- end profile -->
 
                         <!-- event -->
                         <div class="event app-section app-bg-dark">
                             <div class="container">
                                 <div class="app-title">
-                                    <h4>Wedding Event</h4>
+                                    <h4>Wedding Events</h4>
                                     <i class="fa fa-heart"></i>
                                 </div>
+
+                                <!-- Barat -->
                                 <div class="row">
                                     <div class="col-100">
                                         <div class="icon">
@@ -255,16 +257,18 @@
                                         </div>
                                         <div class="entry">
                                             <div class="head">
-                                                <h6>Marriage Ceremony</h6>
-                                                <span>10 May 2017, 04 pm - 06 pm</span>
+                                                <h6>Barat (Wedding Procession)</h6>
+                                                <span>05 February 2026</span>
                                             </div>
                                             <div class="post">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum
-                                                    repellendus illum magnam nesciunt</p>
+                                                <p>The grand welcome of the groom and his family with music, dance, and
+                                                    celebrations.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Haldi -->
                                 <div class="row">
                                     <div class="col-100">
                                         <div class="icon">
@@ -272,16 +276,18 @@
                                         </div>
                                         <div class="entry">
                                             <div class="head">
-                                                <h6>The wedding took place</h6>
-                                                <span>10 May 2017, 06 pm - 08 pm</span>
+                                                <h6>Haldi Ceremony</h6>
+                                                <span>04 February 2026</span>
                                             </div>
                                             <div class="post">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum
-                                                    repellendus illum magnam nesciunt</p>
+                                                <p>A beautiful ritual where turmeric paste is applied to bless the bride
+                                                    and groom.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Mandap -->
                                 <div class="row-no">
                                     <div class="col-100">
                                         <div class="icon">
@@ -289,18 +295,20 @@
                                         </div>
                                         <div class="entry">
                                             <div class="head">
-                                                <h6>Eating Together</h6>
-                                                <span>10 May 2017, 04 pm - 08 pm</span>
+                                                <h6>Mandap Ceremony</h6>
+                                                <span>03 February 2026</span>
                                             </div>
                                             <div class="post">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum
-                                                    repellendus illum magnam nesciunt</p>
+                                                <p>The sacred wedding rituals performed under the mandap with family and
+                                                    loved ones.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
+
                         <!-- end event -->
 
                         <!-- portfolio -->
@@ -312,8 +320,8 @@
                                 </div>
                                 <ul class="portfolio-filter">
                                     <li data-filter="all" class="active">All</li>
-                                    <li data-filter="1">Merriage</li>
-                                    <li data-filter="2">Prawed</li>
+                                    <li data-filter="1">Blood Donation</li>
+                                    <li data-filter="2">Tree Plantation</li>
                                     <li data-filter="3">Friends</li>
                                 </ul>
                                 <div class="portfolio-item">
@@ -365,7 +373,7 @@
                         <!-- end portfolio -->
 
                         <!-- testimonial -->
-                        <div class="testimonial app-section">
+                        {{-- <div class="testimonial app-section">
                             <div class="container">
                                 <div class="app-title">
                                     <h4>Friends Says</h4>
@@ -401,11 +409,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- end testimonial -->
 
                         <!-- latest news -->
-                        <div class="latest-news app-section">
+                        {{-- <div class="latest-news app-section">
                             <div class="container">
                                 <div class="app-title">
                                     <h4>Wedding Blog</h4>
@@ -460,29 +468,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- end latest news -->
 
                         <!-- footer -->
                         <footer>
                             <div class="container">
-                                <h6>Find & follow us</h6>
-                                <ul class="icon-social">
-                                    <li class="facebook "><a href=""><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href=""><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google"><a href=""><i class="fa fa-google"></i></a></li>
-                                    <li class="instagram"><a href=""><i class="fa fa-instagram"></i></a></li>
-                                    <li class="rss"><a href=""><i class="fa fa-rss"></i></a></li>
-                                </ul>
                                 <div class="tel-fax-mail">
                                     <ul>
-                                        <li><span>Tel:</span> 900000002</li>
-                                        <li><span>Fax:</span> 0400000098</li>
-                                        <li><span>Email:</span> info@youremail.com</li>
+                                        <li><span>Groom:</span> +918224899535 (Satyam)</li>
+                                        <li><span>Bride:</span> +918359838906 (Deepak)</li>
+                                        <li><span>Email:</span> greenweddingpromise@ashishwedskalyani.com</li>
                                     </ul>
                                 </div>
                                 <div class="ft-bottom">
-                                    <span>Copyright © 2017 All Rights Reserved </span>
+                                    <span>© 2026 All Rights Reserved | Designed & Developed by
+                                        <strong>Vikas Kumar Chakrawarti</strong></span>
                                 </div>
                             </div>
                         </footer>
