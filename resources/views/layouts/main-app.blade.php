@@ -155,6 +155,27 @@
 
                         </li>
                         <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('webPages.index') }}">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span class="nav-text">Webpage Content <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['byAdmin'] ?? '0' }}
+                                    </h5>
+                                </span> <b class="caret"></b>
+                            </a>
+
+                        </li>
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('events.index') }}">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span class="nav-text">Event <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['byAdmin'] ?? '0' }}
+                                    </h5>
+                                </span> <b class="caret"></b>
+                            </a>
+
+                        </li>
+                       
+                        <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('admin.invited') }}" aria-expanded="false"
                                 aria-controls="product">
                                 <i class="mdi mdi-email-check"></i>
