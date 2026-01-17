@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\InvitationCardController;
 use App\Http\Controllers\WebPageController;
@@ -29,6 +30,7 @@ Route::middleware([
     Route::get('filter-keyword', [FilterController::class, 'filter'])->name('filter.keyword');
     Route::resource('weddings', WeddingController::class);
     Route::resource('webPages', WebPageController::class);
+    Route::resource('events', EventController::class);
     Route::resource('invitationCards', InvitationCardController::class);
     Route::get('invited-guests', [WeddingController::class, 'invited'])
         ->name('invited.guests');
