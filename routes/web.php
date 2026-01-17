@@ -3,12 +3,13 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\InvitationCardController;
+use App\Http\Controllers\WebPageController;
 use App\Http\Controllers\WeddingController;
 use Illuminate\Support\Facades\Route;
 
-Route::fallback(function () {
-    return view('auth.login');
-});
+// Route::fallback(function () {
+//     return view('auth.login');
+// });
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -27,6 +28,7 @@ Route::middleware([
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('filter-keyword', [FilterController::class, 'filter'])->name('filter.keyword');
     Route::resource('weddings', WeddingController::class);
+    Route::resource('webPages', WebPageController::class);
     Route::resource('invitationCards', InvitationCardController::class);
     Route::get('invited-guests', [WeddingController::class, 'invited'])
         ->name('invited.guests');
