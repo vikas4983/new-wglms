@@ -337,13 +337,14 @@ ul {
 }
 
 .slider-slick .overlay {
-	background: rgba(0, 0, 0, 0.68);
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	right: 0;
+    background: transparent;   /* Remove color overlay */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    pointer-events: none;      /* Important: keeps clicks working */
 }
 
 .slider-slick img {

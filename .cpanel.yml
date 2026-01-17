@@ -1,4 +1,4 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home1/ashis940/admin.ashishwedskalyani.com/
+    - export DEPLOYPATH=/home1/ashis940/public_html/
     - /bin/cp -R * $DEPLOYPATH
