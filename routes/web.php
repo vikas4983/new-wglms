@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvitationCardController;
 use App\Http\Controllers\WebPageController;
 use App\Http\Controllers\WeddingController;
@@ -31,6 +32,7 @@ Route::middleware([
     Route::resource('weddings', WeddingController::class);
     Route::resource('webPages', WebPageController::class);
     Route::resource('events', EventController::class);
+    Route::resource('images', ImageController::class);
     Route::resource('invitationCards', InvitationCardController::class);
     Route::get('invited-guests', [WeddingController::class, 'invited'])
         ->name('invited.guests');
