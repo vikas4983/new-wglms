@@ -174,6 +174,16 @@
                             </a>
 
                         </li>
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('images.index') }}">
+                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <span class="nav-text">Upload Image <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['byAdmin'] ?? '0' }}
+                                    </h5>
+                                </span> <b class="caret"></b>
+                            </a>
+
+                        </li>
                        
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('admin.invited') }}" aria-expanded="false"
