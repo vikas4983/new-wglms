@@ -65,7 +65,7 @@
     <div class="d-flex justify-content-between mb-3">
         <a href="{{ route('images.create') }}" class="btn btn-info">
             Add Image
-            <span class="count-circle">{{ $count['invitationCards'] ?? 0 }}</span>
+            <span class="count-circle">{{ $count['images'] ?? 0 }}</span>
         </a>
     </div>
     <!-- Gallery Layout -->
@@ -73,13 +73,14 @@
         <!-- LEFT: Gallery thumbnails -->
         <div class="col-lg-6">
             <div class="text-center ">
-                <button class="btn btn-info">Galleries</button>
+                <button class="btn btn-info">Galleries <span
+                        class="count-circle">{{ $count['image_gallery'] ?? 0 }}</span></button>
             </div>
             <div class="row no-gutters">
                 @foreach ($galleries as $gallery)
                     <div class="col-lg-3 col-md-4 col-sm-6 px-1 mb-2">
                         <div class="card h-100">
-                            <div class="image-heading">{{ $gallery->gallery_type ?? '' }}</div>
+                            <div class="image-heading">{{ $gallery->galleryTypes->name ?? '' }}</div>
                             <div class="image-wrapper">
                                 <!-- Centered actions -->
                                 <div class="image-actions-gallery">
@@ -97,13 +98,14 @@
 
             </div>
             <div class="d-flex justify-content-left mt-4">
-                {{ $galleries->links() }}
+                {{-- {{ $galleries->links() }} --}}
             </div>
         </div>
         <!-- RIGHT: Banner images -->
         <div class="col-lg-6">
             <div class="text-center ">
-                <button class="btn btn-info">Banners</button>
+                <button class="btn btn-info">Banners <span
+                        class="count-circle">{{ $count['image_banner'] ?? 0 }}</span></button>
             </div>
             <div class="row no-gutters">
                 @foreach ($banners as $banner)

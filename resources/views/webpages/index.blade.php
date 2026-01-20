@@ -1,5 +1,5 @@
 @extends('layouts.main-app')
-@section('title', 'Invitation List')
+@section('title', 'Webpage')
 @section('content')
     <style>
         .btn-inline {
@@ -40,21 +40,9 @@
             <a href="{{ route('webPages.create') }}" class="btn btn-info mr-2" id="uploadBtn">
                 <span class="guest-inline" title="Add Content">
                     Add
-                    <span class="count-circle"> {{ $count['invitationCards'] ?? '0' }}</span>
+                    <span class="count-circle"> {{ $count['webpages'] ?? '0' }}</span>
                 </span>
-                <a href="#" class="btn btn-info  btn-inline mr-2">
-                    <span class="nav-text"><i class="mdi mdi-account-group"></i>
-                        <span class="count-circle"> {{ $count['invitationCard_member'] ?? '0' }}</span>
-                        </i>
-                    </span>
-                </a>
-                <form id="sendInvitation" style="margin-left: 10px; display:none" action="{{ route('send.invitation') }}"
-                    method="post">
-                    @csrf
-                    <button type="button" id="invitationBtn" disabled class="btn btn-info">
-                        INVITATION
-                    </button>
-                </form>
+            </a>
         </div>
     </div>
     <div class="mt-3">
@@ -66,7 +54,7 @@
                         <div class="card border-0 shadow-sm h-100">
                             <div class="card-header bg-white border-0 d-flex justify-content-between align-items-start">
                                 <h4 class="font-weight-bold text-success mb-0 pr-3">
-                                    Title : {{ $webPage->title }}
+                                    Webpage Name : {{ $webPage->name }}
                                 </h4>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex gap-2">
@@ -79,53 +67,75 @@
                                 </div>
                             </div>
                             <div class="card-body p-4">
-                                <ul class="list-unstyled mb-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <ul class="list-unstyled mb-4">
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">👤</span>
+                                                <div>
+                                                    <small class="text-muted">Primary Person</small><br>
+                                                    <strong>{{ $webPage->primary_person }}</strong>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">📞</span>
+                                                <div>
+                                                    <small class="text-muted">Secondary Person</small><br>
+                                                    <strong>{{ $webPage->secondary_person }}</strong>
+                                                </div>
+                                            </li>
 
-                                    <li class="d-flex align-items-start mb-3">
-                                        <span class="mr-3">👤</span>
-                                        <div>
-                                            <small class="text-muted">Primary Person</small><br>
-                                            <strong>{{ $webPage->primary_person }}</strong>
-                                        </div>
-                                    </li>
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">🏷️</span>
+                                                <div>
+                                                    <small class="text-muted">Title</small><br>
+                                                    <strong>{{ $webPage->title }}</strong>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start">
+                                                <span class="mr-3">✉️</span>
+                                                <div>
+                                                    <small class="text-muted">Email</small><br>
+                                                    <strong>{{ $webPage->email }}</strong>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">📍</span>
+                                                <div>
+                                                    <small class="text-muted">Google Map</small><br>
+                                                    <strong>{{ $webPage->map }}</strong>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <ul class="list-unstyled mb-4">
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">👤</span>
+                                                <div>
+                                                    <small class="text-muted">Primary Person</small><br>
+                                                    <strong>{{ $webPage->primary_contact }}</strong>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">📞</span>
+                                                <div>
+                                                    <small class="text-muted">Secondary Contact</small><br>
+                                                    <strong>{{ $webPage->secondary_contact }}</strong>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">⭐</span>
+                                                <div>
+                                                    <small class="text-muted">Icon</small><br>
+                                                    <strong>{{ $webPage->icon }}</strong>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                                    <li class="d-flex align-items-start mb-3">
-                                        <span class="mr-3">📞</span>
-                                        <div>
-                                            <small class="text-muted">Primary Contact</small><br>
-                                            <strong>{{ $webPage->primary_contact }}</strong>
-                                        </div>
-                                    </li>
 
-                                    @if ($webPage->secondary_person)
-                                        <li class="d-flex align-items-start mb-3">
-                                            <span class="mr-3">👥</span>
-                                            <div>
-                                                <small class="text-muted">Secondary Person</small><br>
-                                                <strong>{{ $webPage->secondary_person }}</strong>
-                                            </div>
-                                        </li>
-                                    @endif
-
-                                    @if ($webPage->secondary_contact)
-                                        <li class="d-flex align-items-start mb-3">
-                                            <span class="mr-3">📱</span>
-                                            <div>
-                                                <small class="text-muted">Secondary Contact</small><br>
-                                                <strong>{{ $webPage->secondary_contact }}</strong>
-                                            </div>
-                                        </li>
-                                    @endif
-
-                                    <li class="d-flex align-items-start">
-                                        <span class="mr-3">✉️</span>
-                                        <div>
-                                            <small class="text-muted">Email</small><br>
-                                            <strong>{{ $webPage->email }}</strong>
-                                        </div>
-                                    </li>
-
-                                </ul>
 
                                 <div class="border-top pt-3 d-flex justify-content-between align-items-center">
                                     <small class="text-muted">© {{ $webPage->copyright }}</small>
@@ -140,11 +150,9 @@
                 @endforeach
             </div>
         @else
-            <tr>
-                <td colspan="8" class="text-center text-danger py-3">
-                    <h3 style="color: rgb(0, 0, 0)">Data not available</h3>
-                </td>
-            </tr>
+            <div class="text-center">
+                <h3 style="color: rgb(0, 0, 0)">Data not available</h3>
+            </div>
         @endif
     </div>
     <div class="d-flex justify-content-center mt-5">

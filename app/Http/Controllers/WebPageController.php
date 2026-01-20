@@ -38,8 +38,12 @@ class WebPageController extends Controller
         $status = intval($validatedData['status']);
         if ($status === 1) {
             $activeContent = WebPage::where('status', 1)->first();
-            $activeContent->update(['status' => '0']);
-            WebPage::create($validatedData);
+            if (!$activeContent) {
+                WebPage::create($validatedData);
+            } else {
+                $activeContent->update(['status' => '0']);
+                WebPage::create($validatedData);
+            }
         } else {
             WebPage::create($validatedData);
         }
@@ -83,8 +87,12 @@ class WebPageController extends Controller
                 unset($validatedData['status']);
                 $webPage->update($validatedData);
             } else {
-                $activeContent->update(['status' => '0']);
-                $webPage->update($validatedData);
+                if (!$activeContent) {
+                    $webPage->update($validatedData);
+                } else {
+                    $activeContent->update(['status' => '0']);
+                    $webPage->update($validatedData);
+                }
             }
             $webPage->update(array_merge(['status' => 1], $validatedData));
         } else {

@@ -61,9 +61,9 @@
 
                     <select name="gallery_type" id="gallery_type" class="form-control col-lg-6" required>
                         <option value="" disabled selected>Choose type</option>
-                        <option value="couple">Couple</option>
-                        <option value="groom">Groom</option>
-                        <option value="bride">Bride</option>
+                        @foreach ($galleries as $gallery)
+                        <option value="{{$gallery->id}}">{{$gallery->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Upload</button>

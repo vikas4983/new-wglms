@@ -5,8 +5,11 @@ namespace App\Services;
 use App\Models\Card;
 use App\Models\Contact;
 use App\Models\Event;
+use App\Models\Gallery;
 use App\Models\Guest;
+use App\Models\Image;
 use App\Models\InvitationCard;
+use App\Models\WebPage;
 use App\Models\Wedding;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -16,21 +19,28 @@ class CountService
 {
     public function getCount()
     {
-        $member = Wedding::where('description', 'REGEXP', '^[0-9]+$')
-            ->sum(DB::raw('CAST(description AS UNSIGNED)'));
-        $invitationCardMembers = InvitationCard::where('description', 'REGEXP', '^[0-9]+$')
-            ->sum(DB::raw('CAST(description AS UNSIGNED)'));
-        return  [
+        $member = Wedding::where('description', 'REGEXP', '^[0-9]+$')->sum(DB::raw('CAST(description AS UNSIGNED)'));
+        $invitationCardMembers = InvitationCard::where('description', 'REGEXP', '^[0-9]+$')->sum(DB::raw('CAST(description AS UNSIGNED)'));
+        return [
             'guests' => Wedding::where('is_sent', 0)->count(),
-            'byAdmin' => Wedding::where('user_id', Auth()->id())->where('is_sent', 0)->count(),
+            'byAdmin' => Wedding::where('user_id', Auth()->id())
+                ->where('is_sent', 0)
+                ->count(),
             'invited' => Wedding::where('is_sent', 1)->count(),
-            'invitedByAdmin' => Wedding::where('is_sent', 1)->where('user_id', Auth()->id())->count(),
+            'invitedByAdmin' => Wedding::where('is_sent', 1)
+                ->where('user_id', Auth()->id())
+                ->count(),
             'totalByAdmin' => Wedding::whereNotNull('user_id')->count(),
             'total_guests' => Wedding::count(),
             'total_members' => $member,
             'invitationCards' => InvitationCard::count(),
             'invitationCard_member' => $invitationCardMembers,
-
+            'galleries' => Gallery::count(),
+            'webpages' => WebPage::count(),
+            'events' => Event::count(),
+            'images' => Image::count(),
+            'image_gallery' => Image::whereNotNull('gallery_type')->count(),
+            'image_banner' => Image::whereNull('gallery_type')->count(),
         ];
     }
 }

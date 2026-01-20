@@ -3,10 +3,21 @@
     @method('PATCH')
     <div class="row display-flex">
         <div class="form-group col-lg-3">
-            <label for="title" class="font-weight-medium">Title</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                placeholder="Enter your title" value="{{ old('title', $objectdata->title ?? '') }}" inputmode="\d{30}"
+            <label for="name" class="font-weight-medium">Name</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                placeholder="Enter webpage name" value="{{ old('name', $objectdata->name ?? '') }}" inputmode="\d{30}"
                 maxlength="30" required>
+            @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="title" class="font-weight-medium">Title</label>
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                name="title" placeholder="Enter your title" value="{{ old('title', $objectdata->title ?? '') }}"
+                inputmode="\d{30}" maxlength="30" required>
             @error('title')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -40,17 +51,7 @@
                 </div>
             @enderror
         </div>
-        <div class="form-group col-lg-3">
-            <label for="copyright" class="font-weight-medium">Copyright</label>
-            <input type="text" class="form-control @error('copyright') is-invalid @enderror" id="copyright"
-                name="copyright" placeholder="Enter your copyright"
-                value="{{ old('copyright', $objectdata->copyright ?? '') }}" inputmode="\d{30}" maxlength="30" required>
-            @error('copyright')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
+
         <div class="form-group col-lg-6">
             <label for="primary_person" class="font-weight-medium">Primary Person Name</label>
             <input type="text" class="form-control @error('primary_person') is-invalid @enderror" id="primary_person"
@@ -108,6 +109,40 @@ is-invalid
                 value="{{ old('secondary_contact', $objectdata->secondary_contact ?? '') }}">
             <div class="invalid-feedback"></div>
             @error('secondary_contact')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="map" class="font-weight-medium">Google Map</label>
+            <input type="text" class="form-control @error('map') is-invalid @enderror" id="map"
+                name="map" placeholder="Enter google map url" value="{{ old('map', $objectdata->map ?? '') }}"
+                inputmode="\d{30}" maxlength="30" required>
+            @error('map')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="copyright" class="font-weight-medium">Copyright</label>
+            <input type="text" class="form-control @error('copyright') is-invalid @enderror" id="copyright"
+                name="copyright" placeholder="Enter your copyright"
+                value="{{ old('copyright', $objectdata->copyright ?? '') }}" inputmode="\d{30}" maxlength="30"
+                required>
+            @error('copyright')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+        <div class="form-group col-lg-3">
+            <label for="icon" class="font-weight-medium">Icon Class</label>
+            <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon"
+                name="icon" placeholder="Enter icon class" value="{{ old('icon', $objectdata->icon ?? '') }}"
+                inputmode="\d{30}" maxlength="30" required>
+            @error('icon')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

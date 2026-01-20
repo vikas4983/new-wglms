@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('gallery_id')->nullable();
             $table->string('path');
             $table->string('gallery_type')->nullable();
             $table->morphs('imageable');

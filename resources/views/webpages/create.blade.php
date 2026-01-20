@@ -25,6 +25,17 @@
                         @csrf
                         <div class="row display-flex">
                             <div class="form-group col-lg-3">
+                                <label for="name" class="font-weight-medium">Name</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    id="name" name="name" placeholder="Enter web page name"
+                                    value="{{ old('name') }}" inputmode="\d{30}" maxlength="30" required>
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-lg-3">
                                 <label for="title" class="font-weight-medium">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
                                     id="title" name="title" placeholder="Enter your title" value="{{ old('title') }}"
@@ -61,17 +72,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-lg-3">
-                                <label for="copyright" class="font-weight-medium">Copyright</label>
-                                <input type="text" class="form-control @error('copyright') is-invalid @enderror"
-                                    id="copyright" name="copyright" placeholder="Enter your copyright"
-                                    value="{{ old('copyright') }}" inputmode="\d{30}" maxlength="30" required>
-                                @error('copyright')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+
                             <div class="form-group col-lg-6">
                                 <label for="primary_person" class="font-weight-medium">Primary Person Name</label>
                                 <input type="text" class="form-control @error('primary_person') is-invalid @enderror"
@@ -86,7 +87,7 @@
                             <div class="form-group col-lg-6">
                                 <label for="primary_contact" class="font-weight-medium">Primary Mobile Number</label>
                                 <input type="tel" name="primary_contact" placeholder="Enter primary mobile number"
-                                    maxlength="12" inputmode="numeric" pattern="^([0-9]{10}|[0-9]{12})$"
+                                    maxlength="10" inputmode="numeric" pattern="^([0-9]{10})$"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     onkeypress="return event.charCode >= 48 && event.charCode <= 57" required
                                     class="form-control @error('primary_contact')
@@ -118,7 +119,7 @@ is-invalid
                             <div class="form-group col-lg-6">
                                 <label for="secondary_contact" class="font-weight-medium">Secondary Mobile Number</label>
                                 <input type="tel" name="secondary_contact" placeholder="Enter secondary mobile number"
-                                    maxlength="12" inputmode="numeric" pattern="^([0-9]{10}|[0-9]{12})$"
+                                    maxlength="10" inputmode="numeric" pattern="^([0-9]{10})$"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                                     class="form-control @error('secondary_contact')
@@ -134,12 +135,39 @@ is-invalid
                                     </div>
                                 @enderror
                             </div>
-
-
-
-
-
-
+                            <div class="form-group col-lg-3">
+                                <label for="map" class="font-weight-medium">Google Map</label>
+                                <input type="text" class="form-control @error('map') is-invalid @enderror"
+                                    id="map" name="map" placeholder="Enter google map url"
+                                    value="{{ old('map') }}" inputmode="\d{30}" maxlength="30" required>
+                                @error('map')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <label for="copyright" class="font-weight-medium">Copyright</label>
+                                <input type="text" class="form-control @error('copyright') is-invalid @enderror"
+                                    id="copyright" name="copyright" placeholder="Enter your copyright"
+                                    value="{{ old('copyright') }}" inputmode="\d{30}" maxlength="30" required>
+                                @error('copyright')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <label for="icon" class="font-weight-medium">Copyright</label>
+                                <input type="text" class="form-control @error('icon') is-invalid @enderror"
+                                    id="icon" name="icon" placeholder="Enter your icon"
+                                    value="{{ old('icon') }}" inputmode="\d{30}" maxlength="30" required>
+                                @error('icon')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col text-center">

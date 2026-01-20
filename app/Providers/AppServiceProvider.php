@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\CountService;
+use App\Services\WebPageService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -20,11 +21,12 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function boot(): void
+    public function boot(WebPageService $webPageService): void
     {
         if ($this->app->runningInConsole() || $this->app->environment('testing')) {
             return;
         }
+        view::share('webContent', $webPageService->webpage());
         Paginator::useBootstrapFive();
         View::composer('*', function ($view) {
             if (Auth::check()) {

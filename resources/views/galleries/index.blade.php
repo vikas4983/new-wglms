@@ -1,5 +1,5 @@
 @extends('layouts.main-app')
-@section('title', 'Events List')
+@section('title', 'Gallery List')
 @section('content')
     <style>
         .btn-inline {
@@ -34,70 +34,57 @@
         }
     </style>
     <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :current-route="['name' => 'List', 'url' => null]" class="mb-5" />
+    @include('alerts.alert')
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-            <a href="{{ route('events.create') }}" class="btn btn-info mr-2" id="uploadBtn">
+            <a href="{{ route('galleries.create') }}" class="btn btn-info mr-2" id="uploadBtn">
                 <span class="guest-inline" title="Add Guest">
                     Add
-                    <span class="count-circle"> {{ $count['events'] ?? '0' }}</span>
+                    <span class="count-circle"> {{ $count['galleries'] ?? '0' }}</span>
                 </span>
-
-            </a>
+                
+                </a>
 
         </div>
+
     </div>
-    @include('alerts.alert')
-    <table class="table" style="width:100%">
+    <table id="productsTable" class="table table-hover table-product" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
+                <th>
+                    <div class="d-flex align-items-center gap-2">
+                        <span>NAME</span>
+                    </div>
+                </th>
+                <th>Status</th>
                 <th>Action</th>
-                <th>Event</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Description</th>
-                <th>Icon</th>
 
             </tr>
         </thead>
+
         <tbody>
-            @if ($events->count() > 0)
-                <div class="row ">
-                    <div class="col text-center mb-5" style="color: rgb(10, 207, 233)">
-                        <span id="copyData"></span>
-                    </div>
-                </div>
-                @foreach ($events as $index => $event)
+            @if ($galleries->count() > 0)
+                @foreach ($galleries as $index => $gallery)
                     <tr class="viewData">
                         <td>{{ $index + 1 }}</td>
                         <td>
+                            {{ $gallery->name }}
+                       </td>
+                        <td>
+                            {{ $gallery->status }}
+                            
+                        </td>
+
+                        <td>
                             <div class="d-flex gap-2">
-                                <x-edit-action-component :route="route('events.edit', $event->id)" :objectData="$event" :method="'GET'"
-                                    :title="__('labels.event_title')" :modalSize="__('labels.event_edit_modal_size')" />
+                                <x-edit-action-component :route="route('galleries.edit', $gallery->id)" :objectData="$gallery" :method="'GET'"
+                                    :title="__('labels.guest_title')" :modalSize="__('labels.guest_edit_modal_size')" />
                                 <span class="mx-1"></span>
-                                <x-delete-action-component :route="route('events.destroy', $event->id)" />
+                                <x-delete-action-component :route="route('galleries.destroy', $gallery->id)" />
 
                             </div>
                         </td>
-                        <td>
-                            <span>
-                                @if ($event->status == 1)
-                                    <i class="fas fa-circle text-success"></i>
-                                @else
-                                    <i class="fas fa-circle text-danger"></i>
-                                @endif{{ Str::limit($event->name ?? '', 25) }}
-                            </span>
-
-                        </td>
-                        <td>
-                            {{ $event->date ? \Carbon\Carbon::parse($event->date)->format('d M Y') : '' }}
-                        </td>
-
-                        <td>
-                            {{ $event->time ? \Carbon\Carbon::parse($event->time)->format('h:i A') : '' }}
-                        </td>
-                        <td>{{ Str::limit($event->description ?? '', 25) }}</td>
-                        <td>{{ Str::limit($event->icon ?? '', 25) }}</td>
 
                     </tr>
                 @endforeach
@@ -110,9 +97,8 @@
             @endif
         </tbody>
     </table>
-
     <div class="d-flex justify-content-center mt-5">
-        {{ $events->links() }}
+        {{ $galleries->links() }}
     </div>
     <script>
         @if (session('success'))

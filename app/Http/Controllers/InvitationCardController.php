@@ -56,7 +56,7 @@ class InvitationCardController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'action' => 'edit',
-                'editForm' => $editForm
+                'editForm' => $editForm,
             ]);
         }
         return view('invitationCards.edit', compact('objectdata'));

@@ -1,5 +1,5 @@
 @extends('layouts.main-app')
-@section('title', 'Invitation Add')
+@section('title', 'Add Gallery')
 @section('content')
     <style>
         #guestsTable.table-hover tbody tr:hover {
@@ -12,23 +12,23 @@
             text-decoration: none !important;
         }
     </style>
-    <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :parent-route="['name' => 'invitationCards', 'url' => route('invitationCards.index')]" :current-route="['name' => 'Create', 'url' => null]" />
+    <x-breadcrumb-component :home-route="['name' => 'Home', 'url' => route('dashboard')]" :parent-route="['name' => 'Galleries', 'url' => route('galleries.index')]" :current-route="['name' => 'Create', 'url' => null]" />
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow">
                 <div class="card-body">
                     @include('alerts.alert')
                     <div class="text-center mb-5">
-                        <h3>Add Guest</h3>
+                        <h3>Add Gallery</h3>
                     </div>
-                    <form id="createGuest" action="{{ route('invitationCards.store') }}" method="post">
+                    <form id="createGuest" action="{{ route('galleries.store') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="name" class="font-weight-medium">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name" placeholder="Enter your name" value="{{ old('name') }}"
-                                    inputmode="\d{30}" maxlength="30">
+                                    inputmode="\d{30}" maxlength="30" required>
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -36,73 +36,25 @@
                                 @enderror
                             </div>
                             <div class="form-group col-lg-6">
-                                <label for="email" class="font-weight-medium">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}"
-                                    inputmode="\d{50}" maxlength="50" required>
-                                @error('email')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="guest_phone" class="font-weight-medium">Phone</label>
-                                <input type="tel" name="phone" placeholder="Enter your mobile number" maxlength="12"
-                                    inputmode="numeric" pattern="^([0-9]{10}|[0-9]{12})$"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" required
-                                    class="form-control @error('phone')
-is-invalid
-@enderror" id="phone" name="phone"
-                                    placeholder="{{ __('labels.guest_phone_placeholder') }}" value="{{ old('phone') }}"
-                                    required>
-                                <div class="invalid-feedback"></div>
-                                @error('phone')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="description" class="font-weight-medium">Family members </label>
-                                <input type="number" class="form-control @error('description') is-invalid @enderror"
-                                    id="description" name="description" placeholder="Enter your description"
-                                    value="{{ old('description') }}" inputmode="\d{30}" maxlength="30">
-                                @error('description')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="address" class="font-weight-medium">Address </label>
-                                <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                    id="address" name="address" placeholder="Enter your address"
-                                    value="{{ old('address') }}" inputmode="\d{30}" maxlength="30">
-                                @error('address')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="comments" class="font-weight-medium">Comment </label>
-                                <input type="text" class="form-control @error('comments') is-invalid @enderror"
-                                    id="comments" name="comments" placeholder="Enter your comments"
-                                    value="{{ old('comments') }}" inputmode="\d{30}" maxlength="30">
-                                @error('comments')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                                <label for="status" class="font-weight-medium">Status</label>
 
+                                <select name="status" id="status"
+                                    class="form-control @error('status') is-invalid @enderror" required>
+                                    <option value="" disabled>Select one</option>
+                                    <option value="0" >Inactive</option>
+                                    <option value="1" selected>Active</option>
+                                </select>
 
+                                @error('status')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col text-center">
-                                <button type="submit" id="submitBtn" title="{{ __('titles.add_guest') }}"
+                                <button type="submit" id="submitBtn" title="Add Gallery"
                                     class="btn btn-primary">Submit</button>
                             </div>
                         </div>

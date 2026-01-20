@@ -7,7 +7,8 @@
  // GITHUB: https://github.com/themefisher/
 -->
 <html lang="en" dir="ltr">
-
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,6 +31,8 @@
     <link href="{{ asset('assets/theme/plugins/toaster/toastr.min.css') }}" rel="stylesheet" />
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}" />
@@ -55,7 +58,7 @@
             text-decoration: none !important;
         }
     </style>
-    
+
     <style>
         html,
         body {
@@ -92,6 +95,38 @@
                 min-height: calc(100vh - 56px);
                 /* header height */
             }
+        }
+    </style>
+    <style>
+        .btn-inline {
+            display: inline-flex !important;
+            align-items: center;
+            width: auto !important;
+            padding: 4px 8px;
+            /* 👈 reduce padding */
+            white-space: nowrap;
+        }
+
+        .guest-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .count-circle {
+            background-color: #28A745;
+            /* green */
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1;
         }
     </style>
 </head>
@@ -156,9 +191,9 @@
                         </li>
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('webPages.index') }}">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <i class="mdi mdi-content-copy"></i>
                                 <span class="nav-text">Webpage Content <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['byAdmin'] ?? '0' }}
+                                        {{ $count['webpages'] ?? '0' }}
                                     </h5>
                                 </span> <b class="caret"></b>
                             </a>
@@ -166,9 +201,19 @@
                         </li>
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('events.index') }}">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <i class="mdi mdi-label"></i>
                                 <span class="nav-text">Event <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['byAdmin'] ?? '0' }}
+                                        {{ $count['events'] ?? '0' }}
+                                    </h5>
+                                </span> <b class="caret"></b>
+                            </a>
+
+                        </li>
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{ route('galleries.index') }}">
+                                <i class="mdi mdi-vector-intersection"></i>
+                                <span class="nav-text">Gallery <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['galleries'] ?? '0' }}
                                     </h5>
                                 </span> <b class="caret"></b>
                             </a>
@@ -176,15 +221,15 @@
                         </li>
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('images.index') }}">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                <i class="mdi mdi-image-outline "></i>
                                 <span class="nav-text">Upload Image <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['byAdmin'] ?? '0' }}
+                                        {{ $count['images'] ?? '0' }}
                                     </h5>
                                 </span> <b class="caret"></b>
                             </a>
 
                         </li>
-                       
+
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('admin.invited') }}" aria-expanded="false"
                                 aria-controls="product">
@@ -196,8 +241,8 @@
                             </a>
                         </li>
                         <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{ route('invitationCards.index') }}" aria-expanded="false"
-                                aria-controls="product">
+                            <a class="sidenav-item-link" href="{{ route('invitationCards.index') }}"
+                                aria-expanded="false" aria-controls="product">
                                 <i class="mdi mdi-email-check"></i>
                                 <span class="nav-text">invitation Cards <h5 class="badge badge-primary badge-pill">
                                         {{ $count['invitationCards'] ?? '0' }}
