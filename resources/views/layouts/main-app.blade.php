@@ -7,8 +7,8 @@
  // GITHUB: https://github.com/themefisher/
 -->
 <html lang="en" dir="ltr">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,8 +31,7 @@
     <link href="{{ asset('assets/theme/plugins/toaster/toastr.min.css') }}" rel="stylesheet" />
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}" />

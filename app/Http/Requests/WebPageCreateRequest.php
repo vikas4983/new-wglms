@@ -24,7 +24,7 @@ class WebPageCreateRequest extends FormRequest
     {
         $webPageId = $this->route('webPage');
         return [
-            'title' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', ],
             'name' => ['required', 'string', ],
             'icon' => ['nullable', 'string',],
             'primary_person' => ['required', 'string', 'max:50'],
@@ -34,6 +34,7 @@ class WebPageCreateRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('web_pages', 'email')->ignore($webPageId)],
             'copyright' => ['nullable', 'string', 'max:100'],
             'map' => ['nullable', 'string', ],
+            'address' => ['nullable', 'string', ],
             'status' => ['required', 'in:0,1'],
         ];
     }

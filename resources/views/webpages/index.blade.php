@@ -103,7 +103,7 @@
                                                 <span class="mr-3">📍</span>
                                                 <div>
                                                     <small class="text-muted">Google Map</small><br>
-                                                    <strong>{{ $webPage->map }}</strong>
+                                                    <strong>{{Str::limit( $webPage->map, 50) }}</strong>
                                                 </div>
                                             </li>
                                         </ul>
@@ -129,6 +129,13 @@
                                                 <div>
                                                     <small class="text-muted">Icon</small><br>
                                                     <strong>{{ $webPage->icon }}</strong>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex align-items-start mb-3">
+                                                <span class="mr-3">📍</span>
+                                                <div>
+                                                    <small class="text-muted">Venue</small><br>
+                                                    <strong>{{ $webPage->address }}</strong>
                                                 </div>
                                             </li>
                                         </ul>

@@ -111,7 +111,7 @@
                 <div class="navbar-inner">
                    <div class="center site-title">
                         <a href="{{ route('view.webpage') }}">
-                            <h1>{{ $webContent['webPage']->name ?? 'Love' }} {{ $webContent['webPage']->icon ?? '' }} </h1>
+                            <h1>{{ $webContent['webPage']->name ?? 'Love' }}   {!! $webContent['webPage']->icon !!} </i> </h1>
                         </a>
                     </div>
                 </div>
@@ -212,8 +212,11 @@
                         </li>
                     @endif
                     <li><span>Email:</span> {{ $webContent['webPage']->email ?? '' }}</li>
+                    <li><span>Vanue:</span> {{ $webContent['webPage']->address ?? '' }}</li>
                 </ul>
             </div>
+            <iframe src="{{ $webContent['webPage']->map ?? '' }}" width="100%" height="100" style="border:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div class="ft-bottom">
                 <span>{{ $webContent['webPage']->copyright ?? '© ' . date('Y') . ' All Rights Reserved' }}
                 </span>
