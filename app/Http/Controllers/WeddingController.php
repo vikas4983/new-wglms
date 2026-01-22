@@ -65,18 +65,17 @@ class WeddingController extends Controller
 
         if (Wedding::where('email', $validatedData['email'])->exists()) {
             return redirect()
-                ->route('invitation.form')
-                ->with('success', 'Thank you for your response. This email already exists.');
+                ->back()->with('success', 'Thank you for your response. This email already exists.');
         }
 
         if (Wedding::where('phone', $validatedData['phone'])->exists()) {
             return redirect()
-                ->route('invitation.form')
+                ->back()
                 ->with('success', 'Thank you for your response. This phone number already exists.');
         }
         StoreFormData::dispatch($validatedData);
         return redirect()
-            ->route('invitation.form')
+            ->back()
             ->with('success', 'Thank you for your response. You will receive your wedding invitation shortly.');
     }
 

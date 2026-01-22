@@ -153,7 +153,7 @@
         <div class="invitation-card">
             <div class="mandap">~ Wedding Ceremony ~</div>
 
-            <h2>Ashish weds Kalyani</h2>
+            <h2>Saurabh weds Vaishnavi</h2>
 
             <p class="message">
                 With the blessings of our families,
