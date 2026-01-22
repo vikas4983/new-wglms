@@ -110,7 +110,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                    <div class="center site-title">
-                        <a href="{{ route('view.webpage') }}">
+                        <a href="{{ route('/') }}">
                             <h1>{{ $webContent['webPage']->name ?? 'Love' }}   {!! $webContent['webPage']->icon !!} </i> </h1>
                         </a>
                     </div>
