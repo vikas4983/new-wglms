@@ -31,6 +31,7 @@ class CountService
                 ->where('user_id', Auth()->id())
                 ->count(),
             'totalByAdmin' => Wedding::whereNotNull('user_id')->count(),
+            'totalGuestByWebpage' => Wedding::whereNull('user_id')->count(),
             'total_guests' => Wedding::count(),
             'total_members' => $member,
             'invitationCards' => InvitationCard::count(),

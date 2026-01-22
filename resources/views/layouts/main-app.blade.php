@@ -160,38 +160,102 @@
                     <ul class="nav sidebar-inner" id="sidebar-menu">
                         <li class="active">
                             <a class="sidenav-item-link" href="{{ route('dashboard') }}">
-                                <i class="mdi mdi-home-heart"></i>
+                                <i class="mdi mdi-briefcase-account-outline"></i>
                                 <span class="nav-text"> Dashboard</span>
                             </a>
                         </li>
 
                         <li class="section-title">
-                            Weeding
+                            Admin Panel
                         </li>
                         <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{ route('weddings.index') }}">
-                                <i class="mdi mdi-account-group-outline"></i>
-                                <span class="nav-text">Guest <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['guests'] ?? '0' }}
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                                data-target="#guests" aria-expanded="false" aria-controls="guests">
+                               <i class="mdi mdi-account-group-outline"></i>
+                                <span class="nav-text">Guests <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['total_guests'] ?? '0' }}
                                     </h5>
+
                                 </span> <b class="caret"></b>
                             </a>
+                            <ul class="collapse" id="guests" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="{{ route('weddings.index') }}">
+                                            {{-- <i class="mdi mdi-account-group-outline"></i> --}}
+                                            <span class="nav-text">By Guest <h5 class="badge badge-primary badge-pill">
+                                                    {{ $count['totalGuestByWebpage'] ?? '0' }}
+                                                </h5>
+                                            </span> <b class="caret"></b>
+                                        </a>
 
+                                    </li>
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="{{ route('admin.guest') }}">
+                                            {{-- <i class="mdi mdi-account-multiple-plus-outline"></i> --}}
+                                            <span class="nav-text">By Admin <h5 class="badge badge-primary badge-pill">
+                                                    {{ $count['totalByAdmin'] ?? '0' }}
+                                                </h5>
+                                            </span> <b class="caret"></b>
+                                        </a>
+                                    </li>
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="{{ route('invitationCards.index') }}"
+                                            aria-expanded="false" aria-controls="product">
+                                            {{-- <i class="mdi mdi-email-check"></i> --}}
+                                            <span class="nav-text">invitation Cards <h5
+                                                    class="badge badge-primary badge-pill">
+                                                    {{ $count['invitationCards'] ?? '0' }}
+
+                                                </h5></span> <b class="caret"></b>
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
                         </li>
                         <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{ route('admin.guest') }}">
-                                <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                <span class="nav-text">Admin <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['byAdmin'] ?? '0' }}
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                                data-target="#invited" aria-expanded="false" aria-controls="invited">
+                               <i class="mdi mdi-email-check"></i>
+                                <span class="nav-text">Invited <h5 class="badge badge-primary badge-pill">
+                                        {{ $count['invited'] ?? '0' }}
                                     </h5>
+
                                 </span> <b class="caret"></b>
                             </a>
+                            <ul class="collapse" id="invited" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="{{ route('admin.invited') }}"
+                                            aria-expanded="false" aria-controls="product">
+                                            {{-- <i class="mdi mdi-email-check"></i> --}}
+                                            <span class="nav-text">By Admin <h5
+                                                    class="badge badge-primary badge-pill">
+                                                    {{ $count['invitedByAdmin'] ?? '0' }}
 
+                                                </h5></span> <b class="caret"></b>
+                                        </a>
+                                    </li>
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="{{ route('invited.guests') }}"
+                                            aria-expanded="false" aria-controls="product">
+                                            {{-- <i class="mdi mdi-email-check"></i> --}}
+                                            <span class="nav-text">Invited <h5 class="badge badge-primary badge-pill">
+                                                    {{ $count['invited'] ?? '0' }}
+
+                                                </h5></span> <b class="caret"></b>
+                                        </a>
+                                    </li>
+
+                                </div>
+                            </ul>
                         </li>
-                        <li class="has-sub">
+                    </ul>
+                    <ul class="nav sidebar-inner" id="sidebar-menu">
+                       <li class="has-sub">
                             <a class="sidenav-item-link" href="{{ route('webPages.index') }}">
                                 <i class="mdi mdi-content-copy"></i>
-                                <span class="nav-text">Webpage Content <h5 class="badge badge-primary badge-pill">
+                                <span class="nav-text">Webpage<h5 class="badge badge-primary badge-pill">
                                         {{ $count['webpages'] ?? '0' }}
                                     </h5>
                                 </span> <b class="caret"></b>
@@ -229,36 +293,9 @@
 
                         </li>
 
-                        <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{ route('admin.invited') }}" aria-expanded="false"
-                                aria-controls="product">
-                                <i class="mdi mdi-email-check"></i>
-                                <span class="nav-text">Invited By Admin <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['invitedByAdmin'] ?? '0' }}
 
-                                    </h5></span> <b class="caret"></b>
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{ route('invitationCards.index') }}"
-                                aria-expanded="false" aria-controls="product">
-                                <i class="mdi mdi-email-check"></i>
-                                <span class="nav-text">invitation Cards <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['invitationCards'] ?? '0' }}
 
-                                    </h5></span> <b class="caret"></b>
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="sidenav-item-link" href="{{ route('invited.guests') }}" aria-expanded="false"
-                                aria-controls="product">
-                                <i class="mdi mdi-email-check"></i>
-                                <span class="nav-text">Invited <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['invited'] ?? '0' }}
 
-                                    </h5></span> <b class="caret"></b>
-                            </a>
-                        </li>
 
                     </ul>
 
