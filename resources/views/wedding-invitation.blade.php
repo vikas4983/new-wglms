@@ -238,6 +238,10 @@
         const container = document.querySelector(".showImages");
         let currentPage = 1;
         const itemsPerPage = 4;
+        window.addEventListener('DOMContentLoaded', function() {
+            loader.style.display = 'flex';
+            loadImage(allImages.dataset.action, '')
+        });
         if (allImages) {
             allImages.addEventListener("click", function(e) {
                 loader.style.display = 'flex';
@@ -246,6 +250,7 @@
         }
         galleryImage.forEach(item => {
             item.addEventListener('click', (e) => {
+                e.preventDefault();
                 loader.style.display = 'flex';
                 loadImage(e.target.dataset.action, e.target.dataset.id);
             });
@@ -267,11 +272,24 @@
                 .then(data => {
                     container.innerHTML = data.html;
                     currentPage = 1;
-                    paginateImages();
-                    document.querySelector('.pagination-controls').style.display = 'flex';
+                    const images = [...container.querySelectorAll('img')];
+                    Promise.all(
+                            images.map(img =>
+                                img.complete ?
+                                Promise.resolve() :
+                                new Promise(resolve => {
+                                    img.onload = img.onerror = resolve;
+                                })
+                            )
+                        ).then(() => {
+                            paginateImages();
+
+                        })
+                        .finally(() => loader.style.display = 'none');
+
                 })
                 .catch(error => alert("Error loading images"))
-                .finally(() => loader.style.display = 'none');
+            //.finally(() => loader.style.display = 'none');
         }
 
         function paginateImages() {
@@ -285,8 +303,16 @@
                     'block' :
                     'none';
             });
+
+
             renderPageNumbers(totalPages);
             updateButtons(totalPages);
+            if (totalPages > 0) {
+                document.querySelector('.pagination-controls').style.display = 'flex';
+            } else {
+                document.querySelector('.pagination-controls').style.display = 'none';
+            }
+
         }
 
         function renderPageNumbers(totalPages) {

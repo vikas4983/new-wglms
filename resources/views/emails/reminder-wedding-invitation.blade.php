@@ -229,9 +229,9 @@
             </div>
 
             <div class="couple-names">
-                Saurabh
+                Ashish
                 <span>&</span>
-                Vaishnavi
+                Kalyani
             </div>
 
             <div class="countdown-wrapper">
@@ -257,7 +257,7 @@
 
             <div class="footer">
                 With love,<br>
-                <strong>Saurabh & Vaishnavi</strong>
+                <strong>Ashish & Kalyani</strong>
             </div>
 
         </div>

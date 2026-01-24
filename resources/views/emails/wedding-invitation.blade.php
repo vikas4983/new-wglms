@@ -249,7 +249,7 @@ p {
 
     <div class="footer">
         With love and respect,<br>
-        <strong>Saurabh &amp; Vaishnavi</strong> 🌺
+        <strong>Ashish &amp; Kalyani</strong> 🌺
     </div>
 
 </div>
