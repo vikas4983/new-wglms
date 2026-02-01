@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('purposes', function (Blueprint $table) {
             $table->id();
             $table->string('icon')->nullable();
+            $table->string('title')->nullable();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->tinyInteger('status')->default(0);
