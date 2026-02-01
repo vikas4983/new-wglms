@@ -190,7 +190,7 @@
                 <!-- Images -->
                 <div class="row showImages g-2"></div>
                 <!-- Pagination -->
-                <div class="pagination-controls pagination-center mt-3">
+                <div class="pagination-controls pagination-center mt-3" id="pBtn">
                     <button id="prevPage" class="btn btn-sm btn-secondary">Prev</button>
                     <span id="pageNumbers"></span>
                     <button id="nextPage" class="btn btn-sm btn-secondary">Next</button>
@@ -236,6 +236,7 @@
         const galleryImage = document.querySelectorAll(".galleryImage");
         const loader = document.querySelector(".gallery-loader");
         const container = document.querySelector(".showImages");
+        const pBtn = document.getElementById('pBtn');
         let currentPage = 1;
         const itemsPerPage = 4;
         window.addEventListener('DOMContentLoaded', function() {
@@ -282,8 +283,14 @@
                                 })
                             )
                         ).then(() => {
-                            paginateImages();
+                            let count = document.querySelectorAll('.filtr-item').length;
 
+                            paginateImages();
+                            if (count > 4) {
+                                pBtn.style.display = 'flex';
+                            } else {
+                                pBtn.style.display = 'none';
+                            }
                         })
                         .finally(() => loader.style.display = 'none');
 
@@ -295,7 +302,6 @@
         function paginateImages() {
             const images = document.querySelectorAll('.filtr-item'); // IMPORTANT
             const totalPages = Math.ceil(images.length / itemsPerPage);
-
             images.forEach((img, index) => {
                 img.style.display =
                     index >= (currentPage - 1) * itemsPerPage &&
@@ -303,8 +309,6 @@
                     'block' :
                     'none';
             });
-
-
             renderPageNumbers(totalPages);
             updateButtons(totalPages);
             if (totalPages > 0) {
@@ -321,6 +325,7 @@
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement('button');
                 btn.innerText = i;
+
                 btn.className = `btn btn-sm ${i === currentPage ? 'btn-primary' : 'btn-light'}`;
                 btn.style.margin = '0 3px';
 
@@ -332,7 +337,9 @@
             }
         }
 
+
         function updateButtons(totalPages) {
+
             document.getElementById('prevPage').disabled = currentPage === 1;
             document.getElementById('nextPage').disabled = currentPage === totalPages;
         }

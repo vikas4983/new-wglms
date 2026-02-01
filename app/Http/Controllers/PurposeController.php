@@ -13,7 +13,8 @@ class PurposeController extends Controller
      */
     public function index()
     {
-        $purposes = Purpose::paginate(10);
+        $purposes = Purpose::latest()->paginate(10);
+        return view('purposes.index', compact('purposes'));
     }
 
     /**
@@ -44,9 +45,17 @@ class PurposeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Purpose $purpose)
+    public function edit(Request $request, Purpose $purpose)
     {
-        //
+        $objectdata = $purpose;
+        $editForm = view('forms.edit.purposeFrom', compact('objectdata'))->render();
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'action' => 'edit',
+                'editForm' => $editForm,
+            ]);
+        }
+        return view('invitationCards.edit', compact('objectdata'));
     }
 
     /**
