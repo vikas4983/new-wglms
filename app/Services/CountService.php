@@ -9,6 +9,7 @@ use App\Models\Gallery;
 use App\Models\Guest;
 use App\Models\Image;
 use App\Models\InvitationCard;
+use App\Models\Purpose;
 use App\Models\WebPage;
 use App\Models\Wedding;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,7 @@ class CountService
             'images' => Image::count(),
             'image_gallery' => Image::whereNotNull('gallery_type')->count(),
             'image_banner' => Image::whereNull('gallery_type')->count(),
+            'purposes' => Purpose::count(),
         ];
     }
 }
