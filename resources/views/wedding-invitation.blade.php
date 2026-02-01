@@ -160,6 +160,33 @@
         @endforeach
     </div>
     </div>
+    <div class="event
+        app-section app-bg-dark">
+        <div class="container">
+            <div class="app-title">
+                <h4>Purposes</h4>
+                <i class="fa fa-heart"></i>
+            </div>
+            @foreach ($webContent['purposes'] as $purpose)
+                <div class="row">
+                    <div class="col-100">
+                        <div class="icon">
+                            <i class="{{ $purpose->icon ?? '' }}"></i>
+                        </div>
+                        <div class="entry">
+                            <div class="head">
+                                <h6>{{ $purpose->name ?? '' }}</h6>
+                                
+                            </div>
+                            <div class="post">
+                                <p>{{ $purpose->description ?? '' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
     <!-- end event -->
     <!-- portfolio -->
     <div class="portfolio app-section">

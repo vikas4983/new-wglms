@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Image;
+use App\Models\Purpose;
 use App\Models\WebPage;
 
 class WebPageService
@@ -18,6 +19,7 @@ class WebPageService
             'galleryTypes' =>  Gallery::class::where('status', 1)->get(),
             'galleryImages' =>  Image::whereNotNull('gallery_type')->get(),
             'bannerImages' =>  Image::whereNull('gallery_type')->get(),
+            'purposes' =>  Purpose::whereStatus(1)->get(),
 
         ];
     }
