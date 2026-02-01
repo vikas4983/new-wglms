@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="icon" class="font-weight-medium">Icon</label>
-                                <input type="icon" class="form-control @error('icon') is-invalid @enderror"
+                                <input type="text" class="form-control @error('icon') is-invalid @enderror"
                                     id="icon" name="icon" placeholder="Enter only font awesome class"
                                     value="{{ old('icon') }}">
                                 <small class="form-text text-muted">
@@ -49,17 +49,19 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label for="description" class="font-weight-medium">Descriptions </label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                                    value="{{ old('description') }}" style="height:80px">Enter Purpose Descriptions</textarea>
-                                @error('description')
+                            <div class="form-group col-lg-3">
+                                <label for="title" class="font-weight-medium">Title</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    id="title" name="title" placeholder="Enter title"
+                                    value="{{ old('title') }}">
+                               
+                                @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                             <div class="form-group col-lg-3">
+<div class="form-group col-lg-3">
                                 <label for="status" class="font-weight-medium">Status </label>
                                <select name="status" class="form-control" id="status">
                                 <option value="1" selected>Active</option>
@@ -70,7 +72,19 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>                            
+
+                            <div class="form-group col-lg-6">
+                                <label for="description" class="font-weight-medium">Descriptions </label>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                                    value="{{ old('description') }}" style="height:80px">Enter Purpose Descriptions</textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
+                             
 
                         </div>
                         <div class="row mt-5">

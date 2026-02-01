@@ -296,7 +296,7 @@
                             <a class="sidenav-item-link" href="{{ route('purposes.index') }}">
                                 <i class="mdi mdi-tag "></i>
                                 <span class="nav-text">Purpose <h5 class="badge badge-primary badge-pill">
-                                        {{ $count['images'] ?? '0' }}
+                                        {{ $count['purposes'] ?? '0' }}
                                     </h5>
                                 </span> <b class="caret"></b>
                             </a>
