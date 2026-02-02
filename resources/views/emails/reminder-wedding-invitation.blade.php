@@ -15,9 +15,7 @@
             --red: #8b0000;
             --mehroon: #5a0f1b;
             --gold: #d4af37;
-            --green: #2d6a4f;
             --bg: #fff6f4;
-            --card: #ffffff;
             --text: #3a1a1a;
         }
 
@@ -35,8 +33,8 @@
         .invitation-page {
             min-height: 100svh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
@@ -65,7 +63,6 @@
             letter-spacing: 2px;
         }
 
-        /* Reminder badge */
         .reminder-badge {
             background: linear-gradient(135deg, var(--red), var(--mehroon));
             color: var(--gold);
@@ -77,7 +74,6 @@
             margin: 0 auto 18px;
         }
 
-        /* Header */
         .header {
             text-align: center;
         }
@@ -86,40 +82,32 @@
             font-family: 'Playfair Display', serif;
             font-size: 32px;
             color: var(--mehroon);
+            margin-bottom: 4px;
         }
 
         .header h2 {
             font-size: 16px;
             color: #7a2a2a;
+            margin: 0;
         }
 
-        /* Couple names */
         .couple-names {
             text-align: center;
             font-family: 'Playfair Display', serif;
             font-size: 42px;
-            font-weight: 700;
             color: var(--mehroon);
-            margin: 14px 0 22px;
+            margin: 18px 0;
         }
 
         .couple-names span {
             display: block;
             font-size: 28px;
-            margin: 8px 0;
             color: var(--gold);
         }
 
-        /* Countdown */
         .countdown-wrapper {
             text-align: center;
             margin: 20px 0 30px;
-        }
-
-        .countdown-title {
-            font-size: 14px;
-            color: #7a2a2a;
-            margin-bottom: 8px;
         }
 
         .countdown {
@@ -134,7 +122,6 @@
             padding: 10px 14px;
             border-radius: 12px;
             min-width: 70px;
-            text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
@@ -147,7 +134,6 @@
 
         .countdown small {
             font-size: 11px;
-            color: #777;
         }
 
         .section {
@@ -160,21 +146,32 @@
 
         .section h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 22px;
+            text-align: center;
             color: var(--mehroon);
             margin-bottom: 12px;
+        }
+
+        .section p {
+            line-height: 1.7;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .center-text {
             text-align: center;
         }
 
-        .details p {
-            font-size: 14px;
-            margin: 6px 0;
+        .highlight-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--mehroon);
+            display: block;
+            margin: 8px 0;
         }
 
-        /* CTA */
         .cta-wrapper {
             text-align: center;
-            margin: 32px 0 10px;
+            margin: 32px 0;
         }
 
         .wedding-btn {
@@ -186,7 +183,6 @@
             font-size: 16px;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             margin-top: 30px;
@@ -204,7 +200,7 @@
                 font-size: 32px;
             }
 
-            .couple-names span {
+            .highlight-names {
                 font-size: 22px;
             }
 
@@ -229,30 +225,52 @@
             </div>
 
             <div class="couple-names">
-                Ashish
-                <span>&</span>
-                Kalyani
+                Ashish <span>&</span> Kalyani
             </div>
 
             <div class="countdown-wrapper">
-                <div class="countdown-title">We are getting married in</div>
                 <div id="countdown" class="countdown"></div>
             </div>
 
-            <p>
-                This is a gentle reminder of our special day. We would be honored to
-                have you with us as we begin our new journey together.
-            </p>
-            <div class="section details">
+            <div class="section">
                 <h3>💐 Wedding Details</h3>
                 <p><strong>Date:</strong> February 05, 2026</p>
                 <p><strong>Time:</strong> 7:00 PM</p>
-                <p><strong>Venue:</strong> Jai Celebration, Beside Gyan Ganga College, Tilwara Road, Bargi Hills,
-                    Jabalpur</p>
+                <p><strong>Venue:</strong> Jai Celebration, Tilwara Road, Jabalpur</p>
+            </div>
+
+            <div class="section">
+                <h3>💖 A Message from Our Hearts</h3>
+
+                <p><strong>Dear Family & Friends,</strong></p>
+
+                <p>
+                    With hearts full of love and gratitude,
+                    we invite you to be part of the most beautiful chapter of our lives.
+                </p>
+                <h3>🌿 A Celebration with a Purpose</h3>
+
+                <p>
+                    🩸 Promote Blood Donation<br>
+                    🌱 Plant a Tree<br>
+                    🍽 Stop Food Wastage<br>
+                    💧 Save Water<br>
+                    ♻ Say No to Single-Use Plastic<br>
+                    🎆 No Crackers, No Pollution<br>
+                    🐾 No Animal Abuse<br>
+                    💚 No Dowry
+                </p>
+
+                <p>
+                    Let’s celebrate love responsibly and joyfully 🌍<br>
+                    <strong>Your presence is the greatest gift we could ask for.</strong>
+                </p>
+
+
             </div>
 
             <div class="cta-wrapper">
-                <a href="{{ route('view.webpage') }}" class="wedding-btn">View Full Invitation 💌</a>
+                <a href="{{ route('/') }}" class="wedding-btn">View Full Invitation 💌</a>
             </div>
 
             <div class="footer">
@@ -264,31 +282,28 @@
     </div>
 
     <script>
-       const weddingDate = new Date(2026, 1, 5, 19, 0, 0).getTime();
+        const weddingDate = new Date(2026, 1, 5, 19, 0, 0).getTime();
 
-
-        const timer = setInterval(function() {
+        setInterval(() => {
             const now = new Date().getTime();
             const diff = weddingDate - now;
 
             if (diff <= 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML =
-                    "<strong>🎉 The wedding has started!</strong>";
+                document.getElementById("countdown").innerHTML = "🎉 The wedding has started!";
                 return;
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
 
             document.getElementById("countdown").innerHTML = `
-        <div><span>${days}</span><small>Days</small></div>
-        <div><span>${hours}</span><small>Hours</small></div>
-        <div><span>${minutes}</span><small>Minutes</small></div>
-        <div><span>${seconds}</span><small>Seconds</small></div>
-    `;
+            <div><span>${d}</span><small>Days</small></div>
+            <div><span>${h}</span><small>Hours</small></div>
+            <div><span>${m}</span><small>Minutes</small></div>
+            <div><span>${s}</span><small>Seconds</small></div>
+        `;
         }, 1000);
     </script>
 

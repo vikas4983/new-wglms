@@ -99,6 +99,64 @@
     display: none;
 }
     </style>
+    <style>
+   .couple-names {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--mehroon);
+            margin: 14px 0 22px;
+        }
+
+        .couple-names span {
+            display: block;
+            font-size: 28px;
+            margin: 8px 0;
+            color: var(--gold);
+        }
+
+        /* Countdown */
+        .countdown-wrapper {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+
+        .countdown-title {
+            font-size: 14px;
+            color: #7a2a2a;
+            margin-bottom: 8px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            color: #ffffff;
+            flex-wrap: wrap;
+        }
+
+        .countdown div {
+            background: #EC407A;
+            padding: 10px 14px;
+            border-radius: 12px;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .countdown span {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .countdown small {
+            font-size: 11px;
+            color: #ffffff;
+        }
+</style>
 </head>
 <body>
 <div class="statusbar-overlay"></div>
@@ -134,6 +192,11 @@
                     <!-- event -->
                         <div class="event
         app-section app-bg-dark">
+    <div class="countdown-wrapper">
+        <div class="countdown-title">We are getting married in</div>
+        <div id="countdown" class="countdown"></div>
+    </div>
+
     <div class="container">
         <div class="app-title">
             <h4>Wedding Events</h4>
@@ -173,7 +236,7 @@
                     <div class="entry">
                         <div class="head">
                             <h6>{{ $purpose->name ?? '' }}</h6>
-                           
+
                         </div>
                         <div class="post">
                             <p>{{ $purpose->description ?? '' }}</p>
@@ -227,12 +290,21 @@
         <div class="container">
             <div class="tel-fax-mail">
                 <ul>
-                    <li><span>{{ $webContent['webPage']->primary_person ?? '' }}:</span>
-                        +91{{ $webContent['webPage']->primary_contact ?? '' }}</li>
+                    @if (!empty($webContent['webPage']?->primary_contact))
+                        <li class="phone-item">
+                            <span>{{ $webContent['webPage']?->primary_person }}:</span>
+                            <a href="tel:+91{{ $webContent['webPage']?->primary_contact }}" class="mobile-call">
+                                +91{{ $webContent['webPage']?->primary_contact }}
+                            </a>
+                        </li>
+                    @endif
+
                     @if (!empty($webContent['webPage']?->secondary_contact))
-                        <li>
+                        <li class="phone-item">
                             <span>{{ $webContent['webPage']?->secondary_person }}:</span>
-                            +91{{ $webContent['webPage']?->secondary_contact }}
+                            <a href="tel:+91{{ $webContent['webPage']?->secondary_contact }}" class="mobile-call">
+                                +91{{ $webContent['webPage']?->secondary_contact }}
+                            </a>
                         </li>
                     @endif
                     <li><span>Email:</span> {{ $webContent['webPage']->email ?? '' }}</li>
@@ -382,6 +454,34 @@
                 paginateImages();
             }
         });
+    </script>
+    <script>
+        const weddingDate = new Date(2026, 1, 5, 19, 0, 0).getTime();
+
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            if (diff <= 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML =
+                    "<strong>🎉 The wedding has started!</strong>";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `
+        <div><span>${days}</span><small>Days</small></div>
+        <div><span>${hours}</span><small>Hours</small></div>
+        <div><span>${minutes}</span><small>Minutes</small></div>
+        <div><span>${seconds}</span><small>Seconds</small></div>
+    `;
+        }, 1000);
     </script>
     <!-- script -->
     <script src="{{ asset('assets/theme/js/custom-js/action-button.js') }}"></script>

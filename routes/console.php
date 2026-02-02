@@ -10,30 +10,31 @@ Artisan::command('inspire', function () {
 
 Schedule::command('invitation:reminder')
     ->timezone('Asia/Kolkata')
-    ->when(fn () => now()->toDateString() === '2026-02-05')
+    ->when(fn () => now()->toDateString() === '2026-02-03')
+    ->at('09:00');
+Schedule::command('invitation:reminder')
+    ->timezone('Asia/Kolkata')
+    ->when(fn () => now()->toDateString() === '2026-02-04')
     ->at('09:00');
 
-Schedule::command('invitation:reminder')
-    ->timezone('Asia/Kolkata')
-    ->when(fn () => now()->toDateString() === '2026-02-05')
-    ->at('12:00');
 
-Schedule::command('invitation:reminder')
-    ->timezone('Asia/Kolkata')
-    ->when(fn () => now()->toDateString() === '2026-02-05')
-    ->at('15:00');
 
-Schedule::command('invitation:reminder')
-    ->timezone('Asia/Kolkata')
-    ->when(fn () => now()->toDateString() === '2026-02-05')
-    ->at('17:00');
+// Schedule::command('invitation:reminder')
+//     ->timezone('Asia/Kolkata')
+//     ->when(fn () => now()->toDateString() === '2026-02-02')
+//     ->at('20:00');
 
-Schedule::command('invitation:reminder')
-    ->timezone('Asia/Kolkata')
-    ->when(fn () => now()->toDateString() === '2026-02-05')
-    ->at('18:00');
+// Schedule::command('invitation:reminder')
+//     ->timezone('Asia/Kolkata')
+//     ->when(fn () => now()->toDateString() === '2026-02-05')
+//     ->at('17:00');
 
-Schedule::command('invitation:reminder')
-    ->timezone('Asia/Kolkata')
-    ->when(fn () => now()->toDateString() === '2026-02-05')
-    ->at('19:00');
+// Schedule::command('invitation:reminder')
+//     ->timezone('Asia/Kolkata')
+//     ->when(fn () => now()->toDateString() === '2026-02-05')
+//     ->at('18:00');
+
+// Schedule::command('invitation:reminder')
+//     ->timezone('Asia/Kolkata')
+//     ->when(fn () => now()->toDateString() === '2026-02-05')
+//     ->at('19:00');

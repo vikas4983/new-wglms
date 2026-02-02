@@ -28,7 +28,7 @@ class SendReminderInvitation extends Command
      */
     public function handle()
     {
-        $guests = Wedding::where('is_sent', 1)->get();
+        $guests = Wedding::all();
         foreach ($guests as $guest) {
            InvitationReminder::dispatch($guest);
            Log::info('Reminder command executed');
