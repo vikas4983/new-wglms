@@ -1,4 +1,6 @@
+---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sk7yjv94kzq4/public_html/ashishwedskalyani.com/
-    - /bin/cp -R * $DEPLOYPATH
+    - export DEPLOYPATH=/home/sk7yjv94kzq4/public_html/ashishwedskalyani.com
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R . $DEPLOYPATH
