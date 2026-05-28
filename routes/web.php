@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('auth.login');
 // });
 Route::get('/', function () {
-    return view('auth.login');
+    return view('home');
 })->name('/');
 Route::get('register', function () {
-    return view('auth.login');
+    return view('home');
 })->name('register');
+Route::get('login', function () {
+    return view('auth.login');
+})->name('login');
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -43,4 +46,3 @@ Route::post('submit-invitation', [WeddingController::class, 'guestStore'])->name
 Route::get('marriage-invitation', [WeddingController::class, 'view'])->name('view.webpage');
 Route::post('gallery', [ImageController::class, 'gallery'])->name('gallery.image');
 Route::view('emails.reminder-wedding-invitation', 'emails.reminder-wedding-invitation');
-
