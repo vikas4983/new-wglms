@@ -56,6 +56,7 @@ class ImageController extends Controller
             ]);
             return redirect()->back()->with('success', 'Banner has been uploaded successfully');
         }
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     /**
